@@ -37,7 +37,7 @@ func GetConfigReservedWords(configFile string) []types.ReservedWord {
 		localization = append(localization, scanner.Text())
 	}
 	
-	config.Close()
+	defer config.Close()
 
 	if len(localization) != length {
 		fmt.Println("Configuration file must contain localizations for eight key word.")

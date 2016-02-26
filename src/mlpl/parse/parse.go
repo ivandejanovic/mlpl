@@ -2,8 +2,8 @@ package parse
 
 import (
 	"bufio"
-	"io"
 	"fmt"
+	"io"
 	"mlpl/types"
 	"os"
 	"unicode"
@@ -11,7 +11,7 @@ import (
 
 const (
 	newLine    rune = '\n'
-	semi       rune = ':'
+	colon      rune = ':'
 	space      rune = ' '
 	tab        rune = '\t'
 	numberSign rune = '#'
@@ -79,7 +79,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 					state = inNum
 				} else if unicode.IsLetter(r) {
 					state = inId
-				} else if r == semi {
+				} else if r == colon {
 					state = inAssign
 				} else if r == space || r == tab || r == newLine {
 					save = false
@@ -108,7 +108,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 						case lParen:
 							currentToken = types.LPAREN
 						case rParen:
-							currentToken = types.rParen
+							currentToken = types.RPAREN
 						case semi:
 							currentToken = types.SEMI
 						default:
@@ -119,7 +119,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 			case inComment:
 				save = false
 				if err == io.EOF {
-					sate = done
+					state = done
 					currentToken = types.ENDFILE
 				} else if r == numberSign {
 					state = start
@@ -144,7 +144,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 					}
 					save = false
 					state = done
-					currentToken.NUM
+					currentToken = types.NUM
 				}
 			case inId:
 				if !unicode.IsLetter(r) {
@@ -154,7 +154,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 					}
 					save = false
 					state = done
-					currentToken.ID
+					currentToken = types.ID
 				}
 			case done:
 				//Should never happen
@@ -192,7 +192,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 		}
 	}
 
-	source.Close()
+	defer source.Close()
 
 	return tokens
 }

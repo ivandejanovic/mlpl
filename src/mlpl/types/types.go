@@ -16,10 +16,10 @@ const (
 	UNTIL
 	READ
 	WRITE
-	// multicharacter tokens
+	// Multicharacter tokens.
 	ID
 	NUM
-	// special symbols
+	// Special symbols.
 	ASSIGN
 	EQ
 	LT
@@ -77,8 +77,8 @@ const (
 )
 
 type TreeNode struct {
-	Children []TreeNode
-	Sibling  TreeNode
+	Children []*TreeNode
+	Sibling  *TreeNode
 	Lineno   int
 	Node     NodeKind
 	Stmt     StmtKind
