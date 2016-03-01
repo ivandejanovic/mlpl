@@ -28,6 +28,7 @@ import (
 	"errors"
 	"fmt"
 	"mlpl/types"
+	"strconv"
 )
 
 type lexBuffer struct {
@@ -110,13 +111,128 @@ func match(expected types.TokenType, buffer *lexBuffer) {
 	}
 }
 
-func statement(buffer *lexBuffer) *types.TreeNode {
+func newStmtNode(kind types.StmtKind, lineno int) *types.TreeNode {
+	node := new(types.TreeNode)
+
+	node.Children = make([]*types.TreeNode, 0, 0)
+	node.Sibling = nil
+	node.Node = types.StmtK
+	node.Stmt = kind
+	node.Lineno = lineno
+
+	return node
+}
+
+func newExpNode(kind types.ExpKind, lineno int) *types.TreeNode {
+	node := new(types.TreeNode)
+
+	node.Children = make([]*types.TreeNode, 0, 0)
+	node.Sibling = nil
+	node.Node = types.ExpK
+	node.Exp = kind
+	node.Lineno = lineno
+
+	return node
+}
+
+func factor(buffer *lexBuffer) *types.TreeNode {
+	var node *types.TreeNode
+	var err error
+
+	switch buffer.token.TokenType {
+	case types.NUM:
+		node = newExpNode(types.ConstK, buffer.token.Lineno)
+		if buffer.token.TokenType == types.NUM {
+			node.Val, err = strconv.Atoi(buffer.token.TokenString)
+			if err != nil {
+				panic(err)
+			}
+		}
+		match(types.NUM, buffer)
+	case types.ID:
+		node = newExpNode(types.IdK, buffer.token.Lineno)
+		if buffer.token.TokenType == types.ID {
+			node.Name = buffer.token.TokenString
+		}
+		match(types.ID, buffer)
+	case types.LPAREN:
+		match(types.LPAREN, buffer)
+		node = exp(buffer)
+		match(types.RPAREN, buffer)
+	default:
+		syntaxError(buffer.token)
+	}
+
+	return node
+}
+
+func term(buffer *lexBuffer) *types.TreeNode {
 	return nil
 }
 
+func simple_exp(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func exp(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func if_stmt(buffer *lexBuffer) *types.TreeNode {
+	node := newStmtNode(types.IfK, buffer.token.Lineno)
+
+	match(types.IF, buffer)
+	node.Children = append(node.Children, exp(buffer))
+	match(types.THEN, buffer)
+	node.Children = append(node.Children, stmt_sequence(buffer))
+	if buffer.token.TokenType == types.ELSE {
+		match(types.ELSE, buffer)
+		node.Children = append(node.Children, stmt_sequence(buffer))
+	}
+
+	return node
+}
+
+func repeat_stmt(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func assign_stmt(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func read_stmt(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func write_stmt(buffer *lexBuffer) *types.TreeNode {
+	return nil
+}
+
+func statement(buffer *lexBuffer) *types.TreeNode {
+	var node *types.TreeNode
+
+	switch buffer.token.TokenType {
+	case types.IF:
+		node = if_stmt(buffer)
+	case types.REPEAT:
+		node = repeat_stmt(buffer)
+	case types.ID:
+		node = assign_stmt(buffer)
+	case types.READ:
+		node = read_stmt(buffer)
+	case types.WRITE:
+		node = write_stmt(buffer)
+	default:
+		syntaxError(buffer.token)
+	}
+
+	return node
+}
+
 func stmt_sequence(buffer *lexBuffer) *types.TreeNode {
-	t := statement(buffer)
-	p := t
+	node := statement(buffer)
+	p := node
 
 	for buffer.token.TokenType != types.ENDFILE &&
 		buffer.token.TokenType != types.END &&
@@ -124,9 +240,9 @@ func stmt_sequence(buffer *lexBuffer) *types.TreeNode {
 		buffer.token.TokenType != types.UNTIL {
 		q := statement(buffer)
 		if q != nil {
-			if t == nil {
+			if node == nil {
 				p = q
-				t = p
+				node = p
 			} else {
 				// Now p cannot be nil either.
 				p.Sibling = q
@@ -135,7 +251,7 @@ func stmt_sequence(buffer *lexBuffer) *types.TreeNode {
 		}
 	}
 
-	return t
+	return node
 }
 
 func Lex(tokens []types.Token) *types.TreeNode {
