@@ -38,7 +38,7 @@ func main() {
 	argc := len(args)
 
 	if argc < 1 || argc > 2 {
-		fmt.Println("Usage: <codefilename> [configurationfilename].")
+		fmt.Println("Usage: <codefilename> [configurationfilename]")
 		return
 	}
 
