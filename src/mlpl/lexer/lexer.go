@@ -167,15 +167,48 @@ func factor(buffer *lexBuffer) *types.TreeNode {
 }
 
 func term(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := factor(buffer)
+
+	for ; buffer.token.TokenType == types.TIMES || buffer.token.TokenType == types.OVER; {
+		p := newExpNode(types.OpK, buffer.token.Lineno)
+		p.Children = append(p.Children, node)
+		p.Op = buffer.token.TokenType
+		node = p
+		match(buffer.token.TokenType, buffer)
+		node.Children = append(node.Children, factor(buffer))
+	}
+
+	return node
 }
 
 func simple_exp(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := term(buffer)
+
+	for ; buffer.token.TokenType == types.PLUS || buffer.token.TokenType == types.MINUS; {
+		p := newExpNode(types.OpK, buffer.token.Lineno)
+		p.Children = append(p.Children, node)
+		p.Op = buffer.token.TokenType
+		node = p
+		match(buffer.token.TokenType, buffer)
+		node.Children = append(node.Children, term(buffer))
+	}
+
+	return node
 }
 
 func exp(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := simple_exp(buffer)
+
+	if buffer.token.TokenType == types.LT || buffer.token.TokenType == types.EQ {
+		p := newExpNode(types.OpK, buffer.token.Lineno)
+		p.Children = append(p.Children, node)
+		p.Op = buffer.token.TokenType
+		node = p
+		match(buffer.token.TokenType, buffer)
+		node.Children = append(node.Children, simple_exp(buffer))
+	}
+
+	return node
 }
 
 func if_stmt(buffer *lexBuffer) *types.TreeNode {
@@ -194,19 +227,48 @@ func if_stmt(buffer *lexBuffer) *types.TreeNode {
 }
 
 func repeat_stmt(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := newStmtNode(types.RepeatK, buffer.token.Lineno)
+
+	match(types.REPEAT, buffer)
+	node.Children = append(node.Children, stmt_sequence(buffer))
+	match(types.UNTIL, buffer)
+	node.Children = append(node.Children, exp(buffer))
+
+	return node
 }
 
 func assign_stmt(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := newStmtNode(types.AssignK, buffer.token.Lineno)
+
+	if buffer.token.TokenType == types.ID {
+		node.Name = buffer.token.TokenString
+	}
+	match(types.ID, buffer)
+	match(types.ASSIGN, buffer)
+	node.Children = append(node.Children, exp(buffer))
+
+	return node
 }
 
 func read_stmt(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := newStmtNode(types.ReadK, buffer.token.Lineno)
+
+	match(types.READ, buffer)
+	if buffer.token.TokenType == types.ID {
+		node.Name = buffer.token.TokenString
+	}
+	match(types.ID, buffer)
+
+	return node
 }
 
 func write_stmt(buffer *lexBuffer) *types.TreeNode {
-	return nil
+	node := newStmtNode(types.WriteK, buffer.token.Lineno)
+
+	match(types.WRITE, buffer)
+	node.Children = append(node.Children, exp(buffer))
+
+	return node
 }
 
 func statement(buffer *lexBuffer) *types.TreeNode {
