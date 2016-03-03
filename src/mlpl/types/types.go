@@ -112,3 +112,9 @@ type TreeNode struct {
 	Name     string
 	Type     ExpType
 }
+
+type LineListRec struct {
+}
+
+type BucketListRec struct {
+}

@@ -27,9 +27,12 @@ package main
 import (
 	"fmt"
 	"mlpl/cfg"
+	"mlpl/codegen"
 	"mlpl/lexer"
 	"mlpl/parse"
+	"mlpl/symtab"
 	"mlpl/types"
+	"mlpl/vm"
 	"os"
 )
 
@@ -50,13 +53,9 @@ func main() {
 		reserved = cfg.GetDefaultReserved()
 	}
 
-	fmt.Println(reserved)
-
 	tokens := parse.Parse(args[0], reserved)
-
-	fmt.Println(tokens)
-
 	treeNode := lexer.Lex(tokens)
-
-	fmt.Println(treeNode)
+	bucketListMap := symtab.BuildSymtab(treeNode)
+	code := codegen.CodeGen(treeNode, bucketListMap)
+	vm.Execute(code)
 }

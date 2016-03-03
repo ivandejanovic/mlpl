@@ -22,12 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package codegen
+package symtab
 
 import (
 	"mlpl/types"
 )
 
-func CodeGen(treeNode *types.TreeNode, bucketListMap *map[string]types.BucketListRec) string {
-	return ""
+func BuildSymtab(*types.TreeNode) *map[string]types.BucketListRec {
+	return nil
 }

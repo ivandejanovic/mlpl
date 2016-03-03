@@ -22,12 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package codegen
+package vm
 
-import (
-	"mlpl/types"
-)
+import ()
 
-func CodeGen(treeNode *types.TreeNode, bucketListMap *map[string]types.BucketListRec) string {
-	return ""
+func Execute(code string) {
 }
