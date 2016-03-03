@@ -205,7 +205,6 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 
 		return types.Token{currentToken, currentTokenString, lineno}
 	}
-	getToken(reserved)
 
 	for moreTokens := true; moreTokens; {
 		token := getToken(reserved)

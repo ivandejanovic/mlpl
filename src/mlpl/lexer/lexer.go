@@ -169,7 +169,7 @@ func factor(buffer *lexBuffer) *types.TreeNode {
 func term(buffer *lexBuffer) *types.TreeNode {
 	node := factor(buffer)
 
-	for ; buffer.token.TokenType == types.TIMES || buffer.token.TokenType == types.OVER; {
+	for buffer.token.TokenType == types.TIMES || buffer.token.TokenType == types.OVER {
 		p := newExpNode(types.OpK, buffer.token.Lineno)
 		p.Children = append(p.Children, node)
 		p.Op = buffer.token.TokenType
@@ -184,7 +184,7 @@ func term(buffer *lexBuffer) *types.TreeNode {
 func simple_exp(buffer *lexBuffer) *types.TreeNode {
 	node := term(buffer)
 
-	for ; buffer.token.TokenType == types.PLUS || buffer.token.TokenType == types.MINUS; {
+	for buffer.token.TokenType == types.PLUS || buffer.token.TokenType == types.MINUS {
 		p := newExpNode(types.OpK, buffer.token.Lineno)
 		p.Children = append(p.Children, node)
 		p.Op = buffer.token.TokenType
@@ -300,6 +300,7 @@ func stmt_sequence(buffer *lexBuffer) *types.TreeNode {
 		buffer.token.TokenType != types.END &&
 		buffer.token.TokenType != types.ELSE &&
 		buffer.token.TokenType != types.UNTIL {
+		match(types.SEMI, buffer)
 		q := statement(buffer)
 		if q != nil {
 			if node == nil {
