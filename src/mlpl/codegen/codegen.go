@@ -28,6 +28,6 @@ import (
 	"mlpl/types"
 )
 
-func CodeGen(treeNode *types.TreeNode, bucketListMap *map[string]types.BucketListRec) string {
+func CodeGen(treeNode *types.TreeNode, bucketMap map[string]types.Bucket) string {
 	return ""
 }
