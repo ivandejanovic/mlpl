@@ -26,11 +26,11 @@ package main
 
 import (
 	"fmt"
+	"mlpl/analyze"
 	"mlpl/cfg"
 	"mlpl/codegen"
 	"mlpl/lexer"
 	"mlpl/parse"
-	"mlpl/symtab"
 	"mlpl/types"
 	"mlpl/vm"
 	"os"
@@ -55,7 +55,8 @@ func main() {
 
 	tokens := parse.Parse(args[0], reserved)
 	treeNode := lexer.Lex(tokens)
-	bucketListMap := symtab.BuildSymtab(treeNode)
-	code := codegen.CodeGen(treeNode, bucketListMap)
+	bucketMap := analyze.BuildSymtab(treeNode)
+	analyze.TypeCheck(treeNode)
+	code := codegen.CodeGen(treeNode, bucketMap)
 	vm.Execute(code)
 }
