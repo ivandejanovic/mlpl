@@ -113,8 +113,13 @@ type TreeNode struct {
 	Type     ExpType
 }
 
-type LineListRec struct {
+type LineList struct {
+	Lineno int
+	Next *LineList
 }
 
-type BucketListRec struct {
+type Bucket struct {
+	Name string
+	Lines *LineList
+	MemLoc int
 }
