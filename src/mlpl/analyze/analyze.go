@@ -25,6 +25,8 @@ SOFTWARE.
 package analyze
 
 import (
+	"errors"
+	"fmt"
 	"mlpl/types"
 )
 
@@ -62,6 +64,12 @@ func (buf *buffer) st_lookup(name string) int {
 	return -1
 }
 
+func typeError(lineno int, message string) {
+	errorMessage := fmt.Sprintf("Type error at line %d: %s\n", lineno, message)
+	err := errors.New(errorMessage)
+	panic(err)
+}
+
 func insertNode(buf *buffer, node *types.TreeNode) {
 	switch node.Node {
 	case types.StmtK:
@@ -88,7 +96,40 @@ func nullProc(buf *buffer, node *types.TreeNode) {
 }
 
 func checkNode(buf *buffer, node *types.TreeNode) {
-	return
+	switch node.Node {
+	case types.ExpK:
+		if node.Exp == types.OpK {
+			if node.Children[0].Type != types.Integer || node.Children[1].Type != types.Integer {
+				typeError(node.Lineno, "Op applied to non-integer")
+			}
+			if node.Op == types.EQ || node.Op == types.LT {
+				node.Type = types.Boolean
+			} else {
+				node.Type = types.Integer
+			}
+		} else if node.Exp == types.ConstK || node.Exp == types.IdK {
+			node.Type = types.Integer
+		}
+	case types.StmtK:
+		switch node.Stmt {
+		case types.IfK:
+			if node.Children[0].Type == types.Integer {
+				typeError(node.Lineno, "if test is not Boolean")
+			}
+		case types.AssignK:
+			if node.Children[0].Type != types.Integer {
+				typeError(node.Lineno, "assignment of non-integer value")
+			}
+		case types.WriteK:
+			if node.Children[0].Type != types.Integer {
+				typeError(node.Lineno, "write of non-integer value")
+			}
+		case types.RepeatK:
+			if node.Children[0].Type == types.Integer {
+				typeError(node.Lineno, "repeat test is not Boolean")
+			}
+		}
+	}
 }
 
 func transverse(buf *buffer, node *types.TreeNode, preProc procNode, postProc procNode) {
