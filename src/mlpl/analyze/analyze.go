@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package symtab
+package analyze
 
 import (
 	"mlpl/types"
@@ -87,6 +87,10 @@ func nullProc(buf *buffer, node *types.TreeNode) {
 	return
 }
 
+func checkNode(buf *buffer, node *types.TreeNode) {
+	return
+}
+
 func transverse(buf *buffer, node *types.TreeNode, preProc procNode, postProc procNode) {
 	preProc(buf, node)
 	for index := 0; index < len(node.Children); index++ {
@@ -104,4 +108,8 @@ func BuildSymtab(node *types.TreeNode) map[string]types.Bucket {
 	buf.location = 0
 	transverse(&buf, node, insertNode, nullProc)
 	return buf.bucketMap
+}
+
+func TypeCheck(node *types.TreeNode) {
+	transverse(nil, node, nullProc, checkNode)
 }
