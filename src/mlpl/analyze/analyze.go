@@ -55,10 +55,10 @@ func (buf *buffer) st_insert(name string, lineno int) {
 }
 
 func (buf *buffer) st_lookup(name string) int {
-	bucketList, ok := buf.bucketMap[name]
+	bucket, ok := buf.bucketMap[name]
 
 	if ok {
-		return bucketList.MemLoc
+		return bucket.MemLoc
 	}
 
 	return -1
