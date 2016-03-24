@@ -26,5 +26,5 @@ package vm
 
 import ()
 
-func Execute(code string) {
+func Execute(code []string) {
 }
