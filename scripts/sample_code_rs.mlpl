@@ -1,0 +1,13 @@
+# Primer programa
+  u MLPL jeziku -
+  izracunava faktorijel
+#
+procitaj x; # procitaj broj #
+ako 0 < x tada # ne racunaj ako je x <= 0 #
+  faktorijel := 1;
+  ponovi
+    faktorijel := faktorijel * x;
+    x := x - 1
+  dok x = 0;
+  ispisi faktorijel  # ispisi faktorijel od x #
+kraj

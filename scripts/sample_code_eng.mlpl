@@ -4,10 +4,10 @@
 #
 read x; # input an integer #
 if 0 < x then # don't compute if x <= 0 #
-  fact := 1;
+  factorial := 1;
   repeat
-    fact := fact * x;
+    factorial := factorial * x;
     x := x - 1
   until x = 0;
-  write fact  # output factorial of x #
+  write factorial  # output factorial of x #
 end
