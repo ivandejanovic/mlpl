@@ -86,6 +86,11 @@ func (codeBuf *codeBuffer) emitSkip(howMany int) int {
 	return i
 }
 
+// Procedure emitBackup backs up to loc = a previously skipped location
+func (codeBuf *codeBuffer) emitBackup(loc int) {
+	codeBuf.emitLoc = loc
+}
+
 // Procedure emitRestore restores the current code position to the highest previously unemitted position
 func (codeBuf *codeBuffer) emitRestore() {
 	codeBuf.emitLoc = codeBuf.highEmitLoc
@@ -97,7 +102,7 @@ func (codeBuf *codeBuffer) emitRestore() {
    a = the absolute location in memory
 */
 func (codeBuf *codeBuffer) emitRM_Abs(op string, r int, a int) {
-	abs := a - codeBuf.emitLoc + 1
+	abs := a - (codeBuf.emitLoc + 1)
 	code := fmt.Sprintf("%3d: %5s %d, %d(%d)", codeBuf.emitLoc, op, r, abs, pc)
 	codeBuf.emitLoc += 1
 	if codeBuf.highEmitLoc < codeBuf.emitLoc {
@@ -119,7 +124,7 @@ func findLoc(bucketMap map[string]types.Bucket, name string) int {
 // Procedure genStmt generates code at a statement node
 func genStmt(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBuf *codeBuffer) {
 	var p1, p2, p3 *types.TreeNode = nil, nil, nil
-	var loc int
+	var savedLoc1, savedLoc2, loc int
 
 	switch treeNode.Stmt {
 	case types.IfK:
@@ -131,18 +136,20 @@ func genStmt(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBu
 
 		// Generate code for test expression
 		cGen(p1, bucketMap, codeBuf)
-		codeBuf.emitSkip(1)
+		savedLoc1 = codeBuf.emitSkip(1)
 
 		// Recurse on then part
 		cGen(p2, bucketMap, codeBuf)
-		codeBuf.emitSkip(1)
+		savedLoc2 = codeBuf.emitSkip(1)
 		loc = codeBuf.emitSkip(0)
+		codeBuf.emitBackup(savedLoc1)
 		codeBuf.emitRM_Abs("JEQ", ac, loc)
 		codeBuf.emitRestore()
 
 		// Recurse on else part
 		cGen(p3, bucketMap, codeBuf)
 		loc = codeBuf.emitSkip(0)
+		codeBuf.emitBackup(savedLoc2)
 		codeBuf.emitRM_Abs("LDA", pc, loc)
 		codeBuf.emitRestore()
 	case types.RepeatK:
