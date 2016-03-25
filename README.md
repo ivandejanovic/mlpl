@@ -5,7 +5,7 @@ Multilingual Programming Language, MLPL, is envisioned as an introductionary pro
 
 A problem with majority of programming languages in use today is that they require some knowledge of an English language and alphabet. Children from non-English speaking countries therefore have a higher barrier for entry than children whose native language is English.
 
-Idea behind MLPL is to create an interpreter for a language with very simple syntax that can be easily localized. A programmer would beside source code file provide a file that contains all the key words localized to programmer's native language. Thus, children from non-English speaking countries can start programming at much earlier age.
+Idea behind MLPL is to create an interpreter for a language with very simple syntax that can be easily localized. A programmer would beside source code file provide a file that contains all the keywords localized to programmer's native language. Thus, children from non-English speaking countries can start programming at much earlier age.
 
 Example usage is mlpl mycode.mlpl mylocalization.cfg
 
