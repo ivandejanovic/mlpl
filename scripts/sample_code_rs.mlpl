@@ -3,7 +3,7 @@
   izracunava faktorijel
 #
 procitaj x; # procitaj broj #
-ako 0 < x tada # ne racunaj ako je x <= 0 #
+ako 0 < x onda # ne racunaj ako je x <= 0 #
   faktorijel := 1;
   ponovi
     faktorijel := faktorijel * x;
