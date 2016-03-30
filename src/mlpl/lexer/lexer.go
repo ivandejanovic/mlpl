@@ -41,21 +41,7 @@ func syntaxError(token types.Token) {
 	fmt.Printf("Syntax error at line %d, unexpected token -> ", token.Lineno)
 
 	switch token.TokenType {
-	case types.IF:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.THEN:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.ELSE:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.END:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.REPEAT:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.UNTIL:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.READ:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
-	case types.WRITE:
+	case types.IF, types.THEN, types.ELSE, types.END, types.REPEAT, types.UNTIL, types.READ, types.WRITE:
 		fmt.Printf("reserved word: %s\n", token.TokenString)
 	case types.ASSIGN:
 		fmt.Printf(":=\n")
