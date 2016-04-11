@@ -24,7 +24,230 @@ SOFTWARE.
 
 package vm
 
-import ()
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+const (
+	iaddr_size int = 4096
+	daddr_size int = 4096
+	no_regs    int = 8
+	pc_reg     int = 7
+
+	linesize int = 121
+	wordsize int = 20
+)
+
+type opclass int
+
+const (
+	opcLRR opclass = 1 + iota // reg operands r,s,t
+	opclRM                    // reg r, mem d+s
+	opclRA                    // reg r, int d+s
+)
+
+type opcode int
+
+const (
+	// RR instructions
+	opHALT opcode = 1 + iota // RR     halt, operands are ignored
+	opIN                     // RR     read into reg(r); s and t are ignored
+	opOUT                    // RR     write from reg(r), s and t are ignored
+	opADD                    // RR     reg(r) = reg(s)+reg(t)
+	opSUB                    // RR     reg(r) = reg(s)-reg(t)
+	opMUL                    // RR     reg(r) = reg(s)*reg(t)
+	opDIV                    // RR     reg(r) = reg(s)/reg(t)
+
+	// RM instructions
+	opLD // RM     reg(r) = mem(d+reg(s))
+	opST // RM     mem(d+reg(s)) = reg(r)
+
+	// RA instructions
+	opLDA // RA     reg(r) = d+reg(s)
+	opLDC // RA     reg(r) = d ; reg(s) is ignored
+	opJLT // RA     if reg(r)<0 then reg(7) = d+reg(s)
+	opJLE // RA     if reg(r)<=0 then reg(7) = d+reg(s)
+	opJGT // RA     if reg(r)>0 then reg(7) = d+reg(s)
+	opJGE // RA     if reg(r)>=0 then reg(7) = d+reg(s)
+	opJEQ // RA     if reg(r)==0 then reg(7) = d+reg(s)
+	opJNE // RA     if reg(r)!=0 then reg(7) = d+reg(s)
+)
+
+var opcodeMap map[string]opcode = map[string]opcode{
+	// RR opcodes
+	"HALT": opHALT,
+	"IN":   opIN,
+	"OUT":  opOUT,
+	"ADD":  opADD,
+	"SUB":  opSUB,
+	"MUL":  opMUL,
+	"DIV":  opDIV,
+
+	// RM instructions
+	"LD": opLD,
+	"ST": opST,
+
+	// RA instructions
+	"LDA": opLDA,
+	"LDC": opLDC,
+	"JLT": opJLT,
+	"JLE": opJLE,
+	"JGT": opJGT,
+	"JGE": opJGE,
+	"JEQ": opJEQ,
+	"JNE": opJNE,
+}
+
+type stepRESULT int
+
+const (
+	srOKAY stepRESULT = 1 + iota
+	srHALT
+	srIMEM_ERR
+	srDMEM_ERR
+	srZERODIVIDE
+)
+
+type instruction struct {
+	iop   opcode
+	iarg1 int
+	iarg2 int
+	iarg3 int
+}
+
+type vmMem struct {
+	iMem [iaddr_size]instruction
+	dMem [daddr_size]int
+	reg  [no_regs]int
+}
+
+func loadCode(vm *vmMem, code []string) bool {
+	var (
+		lineNo           int = 0
+		loc              int
+		op               opcode
+		arg1, arg2, arg3 int
+		err              error
+		ok               bool
+	)
+
+	for _, inst := range code {
+		lineNo++
+
+		instSlice := strings.Split(strings.Trim(inst, " "), ":")
+		if len(instSlice) < 2 {
+			fmt.Printf("Missing colon on line: %d\n", lineNo)
+			return false
+		}
+
+		loc, err = strconv.Atoi(strings.Trim(instSlice[0], " "))
+		if err != nil {
+			fmt.Printf("Invalid location %s on line: %d\n", instSlice[0], lineNo)
+			return false
+		}
+		if loc > iaddr_size {
+			fmt.Printf("To large location %d on line: %d\n", loc, lineNo)
+			return false
+		}
+
+		opValue := strings.Trim(instSlice[1], " ")
+		opIndex := strings.Index(opValue, " ")
+		if opIndex == -1 {
+			fmt.Printf("Missing opcode on location %d and line: %d\n", loc, lineNo)
+			return false
+		}
+
+		opCodeKey := opValue[0:opIndex]
+		args := strings.Trim(opValue[opIndex+1:len(opValue)], " ")
+		op, ok = opcodeMap[opCodeKey]
+		if !ok {
+			fmt.Printf("Invalid opcode on location %d and line: %d\n", loc, lineNo)
+			return false
+		}
+
+		switch op {
+		case opHALT, opIN, opOUT, opADD, opSUB, opMUL, opDIV:
+			argsSlice := strings.Split(args, ",")
+			if len(argsSlice) != 3 {
+				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			arg1, err = strconv.Atoi(strings.Trim(argsSlice[0], " "))
+			if err != nil {
+				fmt.Printf("Invalid first argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			arg2, err = strconv.Atoi(strings.Trim(argsSlice[1], " "))
+			if err != nil {
+				fmt.Printf("Invalid second argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			arg3, err = strconv.Atoi(strings.Trim(argsSlice[2], " "))
+			if err != nil {
+				fmt.Printf("Invalid third argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			vm.iMem[loc].iop = op
+			vm.iMem[loc].iarg1 = arg1
+			vm.iMem[loc].iarg2 = arg2
+			vm.iMem[loc].iarg3 = arg3
+		case opLD, opST, opLDA, opLDC, opJLT, opJLE, opJGT, opJGE, opJEQ, opJNE:
+			argsSlice1 := strings.Split(args, ",")
+			if len(argsSlice1) != 2 {
+				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+			
+			argsSlice2 := strings.Split(argsSlice1[1], "(")
+			if len(argsSlice2) != 2 {
+				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+			
+			arg1, err = strconv.Atoi(strings.Trim(argsSlice1[0], " "))
+			if err != nil {
+				fmt.Printf("Invalid first argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			arg2, err = strconv.Atoi(strings.Trim(argsSlice2[0], " "))
+			if err != nil {
+				fmt.Printf("Invalid second argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			arg3, err = strconv.Atoi(strings.Trim(argsSlice2[1], ")"))
+			if err != nil {
+				fmt.Printf("Invalid third argument on location %d and line: %d\n", loc, lineNo)
+				return false
+			}
+
+			vm.iMem[loc].iop = op
+			vm.iMem[loc].iarg1 = arg1
+			vm.iMem[loc].iarg2 = arg2
+			vm.iMem[loc].iarg3 = arg3
+		}
+	}
+
+	return true
+}
+
+func executeCode(vm *vmMem) {
+	
+}
 
 func Execute(code []string) {
+	vm := vmMem{}
+
+	if !loadCode(&vm, code) {
+		return
+	}
+	
+	executeCode(&vm)
 }
