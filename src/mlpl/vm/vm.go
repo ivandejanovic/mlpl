@@ -75,31 +75,6 @@ const (
 	opJNE // RA     if reg(r)!=0 then reg(7) = d+reg(s)
 )
 
-var opcodeMap map[string]opcode = map[string]opcode{
-	// RR opcodes
-	"HALT": opHALT,
-	"IN":   opIN,
-	"OUT":  opOUT,
-	"ADD":  opADD,
-	"SUB":  opSUB,
-	"MUL":  opMUL,
-	"DIV":  opDIV,
-
-	// RM instructions
-	"LD": opLD,
-	"ST": opST,
-
-	// RA instructions
-	"LDA": opLDA,
-	"LDC": opLDC,
-	"JLT": opJLT,
-	"JLE": opJLE,
-	"JGT": opJGT,
-	"JGE": opJGE,
-	"JEQ": opJEQ,
-	"JNE": opJNE,
-}
-
 type stepRESULT int
 
 const (
@@ -131,6 +106,30 @@ func loadCode(vm *vmMem, code []string) bool {
 		arg1, arg2, arg3 int
 		err              error
 		ok               bool
+		opcodeMap        map[string]opcode = map[string]opcode{
+			// RR opcodes
+			"HALT": opHALT,
+			"IN":   opIN,
+			"OUT":  opOUT,
+			"ADD":  opADD,
+			"SUB":  opSUB,
+			"MUL":  opMUL,
+			"DIV":  opDIV,
+
+			// RM instructions
+			"LD": opLD,
+			"ST": opST,
+
+			// RA instructions
+			"LDA": opLDA,
+			"LDC": opLDC,
+			"JLT": opJLT,
+			"JLE": opJLE,
+			"JGT": opJGT,
+			"JGE": opJGE,
+			"JEQ": opJEQ,
+			"JNE": opJNE,
+		}
 	)
 
 	for _, inst := range code {
@@ -203,13 +202,13 @@ func loadCode(vm *vmMem, code []string) bool {
 				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
 				return false
 			}
-			
+
 			argsSlice2 := strings.Split(argsSlice1[1], "(")
 			if len(argsSlice2) != 2 {
 				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
 				return false
 			}
-			
+
 			arg1, err = strconv.Atoi(strings.Trim(argsSlice1[0], " "))
 			if err != nil {
 				fmt.Printf("Invalid first argument on location %d and line: %d\n", loc, lineNo)
@@ -239,7 +238,7 @@ func loadCode(vm *vmMem, code []string) bool {
 }
 
 func executeCode(vm *vmMem) {
-	
+
 }
 
 func Execute(code []string) {
@@ -248,6 +247,6 @@ func Execute(code []string) {
 	if !loadCode(&vm, code) {
 		return
 	}
-	
+
 	executeCode(&vm)
 }
