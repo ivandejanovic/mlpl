@@ -182,12 +182,12 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 				}
 			case done:
 				//Should never happen
-				fmt.Println("Scanner bug: state= %d", state)
+				fmt.Printf("Scanner bug: state= %d\n", state)
 				state = done
 				currentToken = types.ERROR
 			default:
 				//Should never happen
-				fmt.Println("Scanner bug: state= %d", state)
+				fmt.Printf("Scanner bug: state= %d\n", state)
 				state = done
 				currentToken = types.ERROR
 			}
