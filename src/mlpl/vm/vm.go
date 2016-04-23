@@ -233,16 +233,110 @@ func loadCode(vm *vmMem, code []string) bool {
 			vm.iMem[loc].iarg3 = arg3
 		}
 	}
-
 	return true
 }
 
 func executeCode(vm *vmMem) {
+	var execute bool = true
 
+	for execute {
+		var r, s, t, m = 0, 0, 0, 0
+		pc := vm.reg[pc_reg]
+		if pc < 0 || pc > iaddr_size {
+			fmt.Printf("Invalid program counter value: %d\n", pc)
+			return
+		}
+		
+		vm.reg[pc_reg] = pc + 1
+		inst := vm.iMem[pc]
+
+		//Setup instruction arguments
+		switch inst.iop {
+		case opHALT, opIN, opOUT, opADD, opSUB, opMUL, opDIV:
+			r = inst.iarg1
+			s = inst.iarg2
+			t = inst.iarg3
+		case opLD, opST:
+			r = inst.iarg1
+			s = inst.iarg3
+			m = inst.iarg2 + vm.reg[s]
+
+			if m < 0 || m > daddr_size {
+				fmt.Printf("Invalid memory address value: %d\n", m)
+				return
+			}
+		case opLDA, opLDC, opJLT, opJLE, opJGT, opJGE, opJEQ, opJNE:
+			r = inst.iarg1
+			s = inst.iarg3
+			m = inst.iarg2 + vm.reg[s]
+		}
+
+		//Execute instruction
+		switch inst.iop {
+		case opHALT:
+			fmt.Println("Program halting.")
+			return
+		case opIN:
+			var num int = 0
+			_, err := fmt.Scanf("%d", &num)
+			if err != nil {
+				fmt.Println("Non integer entered.")
+				return
+			}
+			vm.reg[r] = num
+		case opOUT:
+			fmt.Println(vm.reg[r])
+		case opADD:
+			vm.reg[r] = vm.reg[s] + vm.reg[t]
+		case opSUB:
+			vm.reg[r] = vm.reg[s] - vm.reg[t]
+		case opMUL:
+			vm.reg[r] = vm.reg[s] * vm.reg[t]
+		case opDIV:
+			if vm.reg[t] == 0 {
+				fmt.Println("Division with zero.")
+				return
+			}
+			vm.reg[r] = vm.reg[s] / vm.reg[t]
+		case opLD:
+			vm.reg[r] = vm.dMem[m]
+		case opST:
+			vm.dMem[m] = vm.reg[r]
+		case opLDA:
+			vm.reg[r] = m
+		case opLDC:
+			vm.reg[r] = inst.iarg2
+		case opJLT:
+			if vm.reg[r] < 0 {
+				vm.reg[pc_reg] = m
+			}
+		case opJLE:
+			if vm.reg[r] <= 0 {
+				vm.reg[pc_reg] = m
+			}
+		case opJGT:
+			if vm.reg[r] > 0 {
+				vm.reg[pc_reg] = m
+			}
+		case opJGE:
+			if vm.reg[r] >= 0 {
+				vm.reg[pc_reg] = m
+			}
+		case opJEQ:
+			if vm.reg[r] == 0 {
+				vm.reg[pc_reg] = m
+			}
+		case opJNE:
+			if vm.reg[r] != 0 {
+				vm.reg[pc_reg] = m
+			}
+		}
+	}
 }
 
 func Execute(code []string) {
 	vm := vmMem{}
+	vm.dMem[0] = daddr_size - 1
 
 	if !loadCode(&vm, code) {
 		return
