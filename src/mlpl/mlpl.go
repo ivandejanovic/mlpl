@@ -25,35 +25,22 @@ SOFTWARE.
 package main
 
 import (
-	"fmt"
 	"mlpl/analyze"
 	"mlpl/cfg"
 	"mlpl/codegen"
 	"mlpl/lexer"
 	"mlpl/parse"
-	"mlpl/types"
 	"mlpl/vm"
-	"os"
 )
 
 func main() {
-	args := os.Args[1:]
-	argc := len(args)
-
-	if argc < 1 || argc > 2 {
-		fmt.Println("Usage: <codefilename> [configurationfilename]")
+	abort, codeFile, reserved := cfg.HandleArgs()
+	
+	if abort {
 		return
 	}
 
-	var reserved []types.ReservedWord
-
-	if argc == 2 {
-		reserved = cfg.GetConfigReservedWords(args[1])
-	} else {
-		reserved = cfg.GetDefaultReserved()
-	}
-
-	tokens := parse.Parse(args[0], reserved)
+	tokens := parse.Parse(codeFile, reserved)
 	treeNode := lexer.Lex(tokens)
 	bucketMap := analyze.BuildSymtab(treeNode)
 	analyze.TypeCheck(treeNode)

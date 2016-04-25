@@ -29,9 +29,17 @@ import (
 	"fmt"
 	"mlpl/types"
 	"os"
+	"strings"
 )
 
-func GetDefaultReserved() []types.ReservedWord {
+const (
+	minus       = "-"
+	doubleMinus = "--"
+	empty       = ""
+	usage       = "Usage: mlpl <codefilename> [configurationfilename]"
+)
+
+func getDefaultReserved() []types.ReservedWord {
 	reserved := make([]types.ReservedWord, 0, 8)
 
 	reserved = append(reserved, types.ReservedWord{types.IF, "if"})
@@ -46,7 +54,7 @@ func GetDefaultReserved() []types.ReservedWord {
 	return reserved
 }
 
-func GetConfigReservedWords(configFile string) []types.ReservedWord {
+func getConfigReservedWords(configFile string) []types.ReservedWord {
 	reserved := make([]types.ReservedWord, 0, 8)
 	var localization []string
 	const length = 8
@@ -77,4 +85,59 @@ func GetConfigReservedWords(configFile string) []types.ReservedWord {
 	reserved = append(reserved, types.ReservedWord{types.WRITE, localization[7]})
 
 	return reserved
+}
+
+func HandleArgs() (bool, string, []types.ReservedWord) {
+	var abort bool = true
+	var codeFile string
+	var reserved []types.ReservedWord
+
+	args := os.Args[1:]
+	argc := len(args)
+
+	for index := 0; index < argc; index++ {
+		var flag string = empty
+		var flagArg string = args[index]
+
+		if strings.HasPrefix(flagArg, minus) {
+			flag = strings.TrimPrefix(flagArg, minus)
+		} else if strings.HasPrefix(flagArg, doubleMinus) {
+			flag = strings.TrimPrefix(flagArg, doubleMinus)
+		}
+
+		if flag != empty {
+			switch flag {
+			case "h", "help":
+				fmt.Println()
+				fmt.Println(usage)
+				fmt.Println()
+				fmt.Println("Options:")
+				fmt.Println("  -h, --help       Prints help")
+				fmt.Println("  -v, --version    Prints version")
+			case "v", "version":
+				fmt.Println("MLPL interpreter version 0.1.0")
+			default:
+				fmt.Println("Invalid usage. For correct usage examples please try: mlpl -h")
+			}
+		}
+
+		return abort, codeFile, reserved
+	}
+
+	if argc < 1 || argc > 2 {
+		fmt.Println(usage)
+		return abort, codeFile, reserved
+	}
+
+	if argc == 2 {
+		reserved = getConfigReservedWords(args[1])
+	} else {
+		reserved = getDefaultReserved()
+	}
+
+	//If we get this far we have good data to process
+	abort = false
+	codeFile = args[0]
+
+	return abort, codeFile, reserved
 }
