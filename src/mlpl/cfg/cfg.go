@@ -119,9 +119,8 @@ func HandleArgs() (bool, string, []types.ReservedWord) {
 			default:
 				fmt.Println("Invalid usage. For correct usage examples please try: mlpl -h")
 			}
+			return abort, codeFile, reserved
 		}
-
-		return abort, codeFile, reserved
 	}
 
 	if argc < 1 || argc > 2 {
