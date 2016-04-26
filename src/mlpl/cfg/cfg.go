@@ -99,10 +99,11 @@ func HandleArgs() (bool, string, []types.ReservedWord) {
 		var flag string = empty
 		var flagArg string = args[index]
 
-		if strings.HasPrefix(flagArg, minus) {
-			flag = strings.TrimPrefix(flagArg, minus)
-		} else if strings.HasPrefix(flagArg, doubleMinus) {
+		
+		if strings.HasPrefix(flagArg, doubleMinus) {
 			flag = strings.TrimPrefix(flagArg, doubleMinus)
+		} else if strings.HasPrefix(flagArg, minus) {
+			flag = strings.TrimPrefix(flagArg, minus)
 		}
 
 		if flag != empty {
