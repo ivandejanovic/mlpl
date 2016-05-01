@@ -53,6 +53,7 @@ type opcode int
 const (
 	// RR instructions
 	opHALT opcode = 1 + iota // RR     halt, operands are ignored
+	opPRNT                   // RR     print, print operant to console
 	opIN                     // RR     read into reg(r); s and t are ignored
 	opOUT                    // RR     write from reg(r), s and t are ignored
 	opADD                    // RR     reg(r) = reg(s)+reg(t)
@@ -86,10 +87,11 @@ const (
 )
 
 type instruction struct {
-	iop   opcode
-	iarg1 int
-	iarg2 int
-	iarg3 int
+	iop    opcode
+	iarg1  int
+	iarg2  int
+	iarg3  int
+	iargs1 string
 }
 
 type vmMem struct {
@@ -104,17 +106,19 @@ func loadCode(vm *vmMem, code []string) bool {
 		loc              int
 		op               opcode
 		arg1, arg2, arg3 int
+		args1            string
 		err              error
 		ok               bool
 		opcodeMap        map[string]opcode = map[string]opcode{
 			// RR opcodes
-			"HALT": opHALT,
-			"IN":   opIN,
-			"OUT":  opOUT,
-			"ADD":  opADD,
-			"SUB":  opSUB,
-			"MUL":  opMUL,
-			"DIV":  opDIV,
+			"HALT":  opHALT,
+			"PRINT": opPRNT,
+			"IN":    opIN,
+			"OUT":   opOUT,
+			"ADD":   opADD,
+			"SUB":   opSUB,
+			"MUL":   opMUL,
+			"DIV":   opDIV,
 
 			// RM instructions
 			"LD": opLD,
@@ -226,12 +230,15 @@ func loadCode(vm *vmMem, code []string) bool {
 				fmt.Printf("Invalid third argument on location %d and line: %d\n", loc, lineNo)
 				return false
 			}
-
-			vm.iMem[loc].iop = op
-			vm.iMem[loc].iarg1 = arg1
-			vm.iMem[loc].iarg2 = arg2
-			vm.iMem[loc].iarg3 = arg3
+		case opPRNT:
+			args1 = args
 		}
+
+		vm.iMem[loc].iop = op
+		vm.iMem[loc].iarg1 = arg1
+		vm.iMem[loc].iarg2 = arg2
+		vm.iMem[loc].iarg3 = arg3
+		vm.iMem[loc].iargs1 = args1
 	}
 	return true
 }
@@ -240,13 +247,14 @@ func executeCode(vm *vmMem) {
 	var execute bool = true
 
 	for execute {
-		var r, s, t, m = 0, 0, 0, 0
+		var r, s, t, m int = 0, 0, 0, 0
+		var str string = ""
 		pc := vm.reg[pc_reg]
 		if pc < 0 || pc > iaddr_size {
 			fmt.Printf("Invalid program counter value: %d\n", pc)
 			return
 		}
-		
+
 		vm.reg[pc_reg] = pc + 1
 		inst := vm.iMem[pc]
 
@@ -269,6 +277,8 @@ func executeCode(vm *vmMem) {
 			r = inst.iarg1
 			s = inst.iarg3
 			m = inst.iarg2 + vm.reg[s]
+		case opPRNT:
+			str = inst.iargs1
 		}
 
 		//Execute instruction
@@ -276,6 +286,8 @@ func executeCode(vm *vmMem) {
 		case opHALT:
 			fmt.Println("Program halting.")
 			return
+		case opPRNT:
+			fmt.Println(str)
 		case opIN:
 			var num int = 0
 			_, err := fmt.Scanf("%d", &num)
