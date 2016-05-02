@@ -45,6 +45,19 @@ type codeBuffer struct {
 	highEmitLoc int // Highest TM location emitted so far. For use in conjunction with emitSkip, emitBackup, and emitRestore
 }
 
+/* Procedure emitSO emits a string-only TM instruction
+   op = the opcode
+   s = string
+*/
+func (codeBuf *codeBuffer) emitSO(op string, s string) {
+	code := fmt.Sprintf("%3d: %5s %s", codeBuf.emitLoc, op, s)
+	codeBuf.emitLoc += 1
+	if codeBuf.highEmitLoc < codeBuf.emitLoc {
+		codeBuf.highEmitLoc = codeBuf.emitLoc
+	}
+	codeBuf.code = append(codeBuf.code, code)
+}
+
 /* Procedure emitRO emits a register-only TM instruction
    op = the opcode
    r = target register
@@ -180,6 +193,8 @@ func genStmt(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBu
 		cGen(p1, bucketMap, codeBuf)
 		// Now output it
 		codeBuf.emitRO("OUT", ac, 0, 0)
+	case types.PrintK:
+		codeBuf.emitSO("PRNT", treeNode.ValString)
 	}
 }
 
