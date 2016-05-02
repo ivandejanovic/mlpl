@@ -40,6 +40,7 @@ const (
 	UNTIL
 	READ
 	WRITE
+	PRINT
 	// Multicharacter tokens.
 	ID
 	NUM
@@ -82,6 +83,7 @@ const (
 	AssignK
 	ReadK
 	WriteK
+	PrintK
 )
 
 type ExpKind int
@@ -101,25 +103,26 @@ const (
 )
 
 type TreeNode struct {
-	Children []*TreeNode
-	Sibling  *TreeNode
-	Lineno   int
-	Node     NodeKind
-	Stmt     StmtKind
-	Exp      ExpKind
-	Op       TokenType
-	Val      int
-	Name     string
-	Type     ExpType
+	Children  []*TreeNode
+	Sibling   *TreeNode
+	Lineno    int
+	Node      NodeKind
+	Stmt      StmtKind
+	Exp       ExpKind
+	Op        TokenType
+	Val       int
+	Name      string
+	ValString string
+	Type      ExpType
 }
 
 type LineList struct {
 	Lineno int
-	Next *LineList
+	Next   *LineList
 }
 
 type Bucket struct {
-	Name string
-	Lines *LineList
+	Name   string
+	Lines  *LineList
 	MemLoc int
 }
