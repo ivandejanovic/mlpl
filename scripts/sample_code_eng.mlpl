@@ -2,6 +2,7 @@
   in MLPL language -
   computes factorial
 #
+write "Enter value";
 read x; # input an integer #
 if 0 < x then # don't compute if x <= 0 #
   factorial := 1;
@@ -9,5 +10,6 @@ if 0 < x then # don't compute if x <= 0 #
     factorial := factorial * x;
     x := x - 1
   until x = 0;
+  write "Factorial for entered value is";
   write factorial  # output factorial of x #
 end

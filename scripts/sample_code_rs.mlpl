@@ -2,6 +2,7 @@
   u MLPL jeziku -
   izracunava faktorijel
 #
+ispisi "Unesite vrednost";
 procitaj x; # procitaj broj #
 ako 0 < x onda # ne racunaj ako je x <= 0 #
   faktorijel := 1;
@@ -9,5 +10,6 @@ ako 0 < x onda # ne racunaj ako je x <= 0 #
     faktorijel := faktorijel * x;
     x := x - 1
   dok x = 0;
+  ispisi "Faktorijel za unetu vrednost je"
   ispisi faktorijel  # ispisi faktorijel od x #
 kraj
