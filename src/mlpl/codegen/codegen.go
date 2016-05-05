@@ -188,13 +188,19 @@ func genStmt(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBu
 		loc = findLoc(bucketMap, treeNode.Name)
 		codeBuf.emitRM("ST", ac, loc, gp)
 	case types.WriteK:
-		// Generate code for expression to write
+		//Get child
 		p1 = treeNode.Children[0]
-		cGen(p1, bucketMap, codeBuf)
-		// Now output it
-		codeBuf.emitRO("OUT", ac, 0, 0)
-	case types.PrintK:
-		codeBuf.emitSO("PRNT", treeNode.ValString)
+		//Check if we output string or id
+		if p1.Type == types.String {
+			//Generate print code
+			codeBuf.emitSO("PRINT", p1.ValString)
+		} else {
+			// Generate code for expression to write
+			p1 = treeNode.Children[0]
+			cGen(p1, bucketMap, codeBuf)
+			// Now output it
+			codeBuf.emitRO("OUT", ac, 0, 0)
+		}
 	}
 }
 

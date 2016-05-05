@@ -109,6 +109,8 @@ func checkNode(buf *buffer, node *types.TreeNode) {
 			}
 		} else if node.Exp == types.ConstK || node.Exp == types.IdK {
 			node.Type = types.Integer
+		} else if node.Exp == types.StringK {
+			node.Type = types.String
 		}
 	case types.StmtK:
 		switch node.Stmt {
@@ -121,8 +123,8 @@ func checkNode(buf *buffer, node *types.TreeNode) {
 				typeError(node.Lineno, "assignment of non-integer value")
 			}
 		case types.WriteK:
-			if node.Children[0].Type != types.Integer {
-				typeError(node.Lineno, "write of non-integer value")
+			if node.Children[0].Type != types.Integer && node.Children[0].Type != types.String {
+				typeError(node.Lineno, "write of non-integer or non-string value")
 			}
 		case types.RepeatK:
 			if node.Children[0].Type == types.Integer {

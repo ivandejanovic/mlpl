@@ -141,6 +141,10 @@ func factor(buffer *lexBuffer) *types.TreeNode {
 			node.Name = buffer.token.TokenString
 		}
 		match(types.ID, buffer)
+	case types.STRING:
+		node = newExpNode(types.StringK, buffer.token.Lineno)
+		node.ValString = buffer.token.TokenString
+		match(types.STRING, buffer)
 	case types.LPAREN:
 		match(types.LPAREN, buffer)
 		node = exp(buffer)

@@ -40,10 +40,10 @@ const (
 	UNTIL
 	READ
 	WRITE
-	PRINT
 	// Multicharacter tokens.
 	ID
 	NUM
+	STRING
 	// Special symbols.
 	ASSIGN
 	EQ
@@ -83,7 +83,6 @@ const (
 	AssignK
 	ReadK
 	WriteK
-	PrintK
 )
 
 type ExpKind int
@@ -92,6 +91,7 @@ const (
 	OpK ExpKind = 1 + iota
 	ConstK
 	IdK
+	StringK
 )
 
 type ExpType int
@@ -100,6 +100,7 @@ const (
 	Void ExpType = 1 + iota
 	Integer
 	Boolean
+	String
 )
 
 type TreeNode struct {

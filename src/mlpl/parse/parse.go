@@ -48,6 +48,7 @@ const (
 	lParen     rune = '('
 	rParen     rune = ')'
 	semi       rune = ';'
+	quotation  rune = '"'
 )
 
 type state int
@@ -56,6 +57,7 @@ const (
 	start state = 1 + iota
 	inAssign
 	inComment
+	inString
 	inNum
 	inId
 	done
@@ -110,6 +112,9 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 				} else if r == numberSign {
 					save = false
 					state = inComment
+				} else if r == quotation {
+					save = false
+					state = inString
 				} else {
 					state = done
 					if err == io.EOF {
@@ -147,6 +152,14 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 					currentToken = types.ENDFILE
 				} else if r == numberSign {
 					state = start
+				}
+			case inString:
+				if r == quotation {
+					save = false
+					state = done
+					currentToken = types.STRING
+				} else {
+					save = true
 				}
 			case inAssign:
 				state = done

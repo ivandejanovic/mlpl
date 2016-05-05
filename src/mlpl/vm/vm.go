@@ -166,6 +166,8 @@ func loadCode(vm *vmMem, code []string) bool {
 		args := strings.Trim(opValue[opIndex+1:len(opValue)], " ")
 		op, ok = opcodeMap[opCodeKey]
 		if !ok {
+			fmt.Println(inst)
+			fmt.Println(opCodeKey)
 			fmt.Printf("Invalid opcode on location %d and line: %d\n", loc, lineNo)
 			return false
 		}
@@ -284,7 +286,6 @@ func executeCode(vm *vmMem) {
 		//Execute instruction
 		switch inst.iop {
 		case opHALT:
-			fmt.Println("Program halting.")
 			return
 		case opPRNT:
 			fmt.Println(str)
