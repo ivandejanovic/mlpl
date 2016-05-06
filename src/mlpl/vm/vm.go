@@ -100,7 +100,7 @@ type vmMem struct {
 	reg  [no_regs]int
 }
 
-func loadCode(vm *vmMem, code []string) bool {
+func (vm *vmMem) loadCode(code []string) bool {
 	var (
 		lineNo           int = 0
 		loc              int
@@ -245,7 +245,7 @@ func loadCode(vm *vmMem, code []string) bool {
 	return true
 }
 
-func executeCode(vm *vmMem) {
+func (vm *vmMem) executeCode() {
 	var execute bool = true
 
 	for execute {
@@ -348,12 +348,12 @@ func executeCode(vm *vmMem) {
 }
 
 func Execute(code []string) {
-	vm := vmMem{}
+	vm := new(vmMem)
 	vm.dMem[0] = daddr_size - 1
 
-	if !loadCode(&vm, code) {
+	if !vm.loadCode(code) {
 		return
 	}
 
-	executeCode(&vm)
+	vm.executeCode()
 }
