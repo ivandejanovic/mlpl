@@ -307,8 +307,37 @@ func stmt_sequence(buffer *lexBuffer) *types.TreeNode {
 	return node
 }
 
+func lexSequence(buffer *lexBuffer) *types.TreeNode {
+	var node, p, q *types.TreeNode = nil, nil, nil
+
+	for buffer.token.TokenType != types.ENDFILE {
+		if buffer.token.TokenType == types.END ||
+			buffer.token.TokenType == types.ELSE ||
+			buffer.token.TokenType == types.UNTIL {
+			getToken(buffer)
+		}
+		if buffer.token.TokenType == types.ENDFILE {
+			break
+		}
+		p = stmt_sequence(buffer)
+
+		if node == nil {
+			node = p
+		} else {
+			q = node
+			
+			for q.Sibling != nil {
+				q = q.Sibling
+			}
+			q.Sibling = p
+		}
+	}
+
+	return node
+}
+
 func Lex(tokens []types.Token) *types.TreeNode {
 	buffer := lexBuffer{tokens[0], 0, tokens}
 
-	return stmt_sequence(&buffer)
+	return lexSequence(&buffer)
 }
