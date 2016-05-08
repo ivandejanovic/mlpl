@@ -1,9 +1,28 @@
 body {
-	
+	background-color: #B1853F
+}
+
+h1, h4 {
+	text-align: center;
+}
+
+.image_container {
+	margin: 60px auto;
+	width: 350px;
 }
 
 .image {
-	heigth: 480px;
-	width: 320px;
-	cursor: pointer;
+	display: inline-block;
+	margin: 10px;
+}
+
+.content_container {
+	margin: 60px auto;
+	width: 600px;
+	background-color: #D4AE70;
+	padding: 10px;
+}
+
+.content_container p {
+	text-align: justify;
 }
