@@ -1,0 +1,1 @@
+..\bin\mlpl.exe %* ..\localization\english.cfg
