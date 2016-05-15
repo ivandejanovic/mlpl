@@ -41,8 +41,9 @@ h1, h4 {
 
 .code_container {
 	margin: 60px auto;
-	width: 600px;
-	background-color: #D4AE70;
+	width: 540px;
+	background-color: #FFFBAA;
+	color: #555100;
 	padding: 10px;
 }
 
