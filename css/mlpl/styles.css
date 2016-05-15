@@ -26,3 +26,26 @@ h1, h4 {
 .content_container p {
 	text-align: justify;
 }
+
+.terminal_container {
+	margin: 60px auto;
+	width: 540px;
+	background-color: #000000;
+	color: #00FF00;
+	padding: 10px;
+}
+
+.terminal_container p {
+	text-align: justify;
+}
+
+.code_container {
+	margin: 60px auto;
+	width: 600px;
+	background-color: #D4AE70;
+	padding: 10px;
+}
+
+.code_container p {
+	text-align: justify;
+}
