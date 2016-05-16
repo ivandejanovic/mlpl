@@ -27,7 +27,7 @@ h1, h4 {
 	text-align: justify;
 }
 
-.terminal_container {
+.console_container {
 	margin: 60px auto;
 	width: 540px;
 	background-color: #000000;
@@ -35,7 +35,7 @@ h1, h4 {
 	padding: 10px;
 }
 
-.terminal_container p {
+.console_container p {
 	text-align: justify;
 }
 
