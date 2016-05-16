@@ -24,23 +24,23 @@
 		<div class="content_container">
 			<h4>Usage</h4>
 			<p>If you are using Windows unpack the content of the package. Start the console and to to the directory to which you unpacked the package. You have a sample program you can run by executing
-			<div class="terminal_container">
+			<div class="console_container">
 				<p>mlpl.bat sample.mlpl</p>
 			</div>
 			in the console. Open any text editor and write your program using the documentaion below. Save it to the same directory that contains the unpacked package. Run your program by executing
-			<div class="terminal_container">
+			<div class="console_container">
 				<p>mlpl.bat your_program.mlpl</p>
 			</div>
 			from the console.</p>
-			<p>If you are using Linux unpack the content of the package. Start the terminal and to to the directory to which you unpacked the package. You have a sample program you can run by executing
-			<div class="terminal_container">
+			<p>If you are using Linux unpack the content of the package. Start the console and to to the directory to which you unpacked the package. You have a sample program you can run by executing
+			<div class="console_container">
 				<p>./mlpl.sh sample.mlpl</p>
 			</div>
-			in the terminal. Open any text editor and write your program using the documentaion below. Save it to the same directory that contains the unpacked package. Run your program by executing
-			<div class="terminal_container">
+			in the console. Open any text editor and write your program using the documentaion below. Save it to the same directory that contains the unpacked package. Run your program by executing
+			<div class="console_container">
 				<p>./mlpl.sh your_program.mlpl</p>
 			</div>
-			from the terminal.</p>
+			from the console.</p>
 		</div>
 		<div class="content_container">
 			<h4>Documentation</h4>
@@ -48,7 +48,20 @@
 			<div class="code_container">
 				<p>read x</p>
 			</div>
-			<p>The instruction above read a integer user types on a console and places it into variable x.</p>
+			<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+			<p><strong>write:</strong> This command enables you to write out a variable, integer or a string to the console.</p>
+			<div class="code_container">
+				<p>write x</p>
+			</div>
+			<p>The instruction above writes a value of the variable to the console.</p>
+			<div class="code_container">
+				<p>write 5</p>
+			</div>
+			<p>The instruction above writes a value of the variable to the console.</p>
+			<div class="code_container">
+				<p>write "message"</p>
+			</div>
+			<p>The instruction above writes a value of the variable to the console.</p> If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
 		</div>
 		<script type="text/javascript" src="js/app.js"></script>
 	</body>
