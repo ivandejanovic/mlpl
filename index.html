@@ -7,26 +7,40 @@
 		<meta name="description" content="MLPL Multilinguale Programming language">
 		<meta name="keywords" content="programming, education, kids, children">
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="styles/main.css">
 	</head>
 	<body>
-		<div class="nav navbar-default mainNav">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="index.html" class="navbar-brand">MLPL - Multilingual Programming Language</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
-						<ul id="languagePicker" class="dropdown-menu languagePicker">
-							<li class="active"><a href="#" data-lang="sr">Srpski</a></li>
-							<li><a href="#" data-lang="en">English</a></li>
-						</ul>
-					</li>
-				</ul>
+		<div id="mainNav" class="navbar navbar-default mainNav">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MLPL<br> <small class="hidden-xs">Multilingual Programming Language</small></a>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+					<i class="glyphicon glyphicon-hamburger"></i>
+				</button>
 			</div>
+
+			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+				<!-- print navbar items -->
+				<li><a href="getting-started.html"><span class="gettingStartedLbl"></span></a></li>
+				<li><a href="docs.html"><span class="docsLbl"></span></a></li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
+					<ul id="languagePicker" class="dropdown-menu languagePicker">
+						<li class="active">
+							<a href="#" data-lang="sr"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="SRB" /> srpski</a>
+						</li>
+						<li>
+							<a href="#" data-lang="en"><img class="flagImg" src="images/flag-serbia.jpg" alt="UK" /> english</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
+	</div>
+
 		<div class="container">
 			<div id="content_sr" class="collapse in">
 
@@ -39,12 +53,17 @@
 					<p>Ideja sa MLPL-om je da se napravi interpreter za jezik jednostavne sintakse koja moze lako da se prevede. Programer bi pored fajla koji sadrzi program prosledio i fajl koji sadrži sve ključne reči prevedene na programerov maternji jezik. Na taj način bi deca kojoj engleski jezik nije maternji mogla da pocnu da programiraju ranije.</p>
 				</div>
 
-				<h3>Preuzimanje i instalacija</h3>
+				<h3 class="text-center">Preuzimanje i instalacija</h3>
 
 				<div class="row">
 					<div class="col-sm-6">
+						<div class="text-center">
+							<p>Ako koristite Windows možete preuzeti paket ovde:</p>
+							<p>
+								<a class="btn btn-lg btn-primary" href="files/mlpl_windows_srpski.zip">MLPL za <i class="fa fa-windows" aria-hidden="true"></i></a>
+							</p>
+						</div>
 
-						<p>Ako koristite Windows možete preuzeti paket koristeći ovaj <a href="files/mlpl_windows_srpski.zip">link</a></p>
 						<div class="well">
 							<p>Ako koristite Windows raspakujte sadržaj paketa. Pokrenite konzolu i idite u direktorijum u koji ste raspakovali sadržaj paketa. Tu se nalazi primer programa koji možete pokrenuti komandom
 							<div class="terminal_container">
@@ -59,7 +78,13 @@
 					</div>
 					<div class="col-sm-6">
 
-						<p>Ako koristite Linux možete preuzeti paket koristeći ovaj <a href="files/mlpl_linux_srpski.zip">link</a></p>
+						<div class="text-center">
+							<p>Ako koristite Linux možete preuzeti paket ovde:</p>
+							<p>
+								<a class="btn btn-lg btn-primary" href="files/mlpl_linux_srpski.zip">MLPL za <i class="fa fa-linux" aria-hidden="true"></i></a>
+							</p>
+						</div>
+
 						<div class="well">
 							<p>Ako koristite Linux raspakujte sadržaj paketa. Pokrenite terminal i idite u direktorijum u koji ste raspakovali sadržaj paketa. Tu se nalazi primer programa koji možete pokrenuti komandom
 							<div class="terminal_container">
@@ -73,11 +98,6 @@
 						</div>
 					</div>
 				</div>
-
-				<h3>Dokumentacija</h3>
-				<div class="row">
-					<p>U izradi</p>
-				</div>
 			</div>
 
 			<div id="content_en" class="collapse">
@@ -89,11 +109,17 @@
 					<p>Idea behind MLPL is to create an interpreter for a language with very simple syntax that can be easily localized. A programmer would beside source code file provide a file that contains all the keywords localized to programmer's native language. Thus, children from non-English speaking countries can start programming at much earlier age.</p>
 				</div>
 
-				<h3>Download</h3>
+				<h3 class="text-center">Download</h3>
 
 				<div class="row">
 					<div class="col-sm-6">
-						<p>If you are using Linux you can download the package using this <a href="files/mlpl_linux_english.zip">link</a></p>
+						<div class="text-center">
+							<p>If you are using Linux you can download the package using this</p>
+							<p>
+								<a class="btn btn-lg btn-primary" href="files/mlpl_linux_english.zip">link</a>
+							</p>
+						</div>
+
 
 						<div class="well">
 							<p>If you are using Linux unpack the content of the package. Start the console and to to the directory to which you unpacked the package. You have a sample program you can run by executing
@@ -108,51 +134,31 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<p>If you are using Windows you can download the package using this <a href="files/mlpl_windows_english.zip">link</a></p>
+						<div class="text-center">
+							<p>If you are using Windows you can download the package using this</p>
+							<p>
+								<a class="btn btn-lg btn-primary" href="files/mlpl_windows_english.zip">link</a>
+							</p>
+						</div>
 
-						<p>If you are using Windows unpack the content of the package. Start the console and to to the directory to which you unpacked the package. You have a sample program you can run by executing
-						<div class="console_container">
-							<p>mlpl.bat sample.mlpl</p>
+
+						<div class="well">
+							<p>If you are using Windows unpack the content of the package. Start the console and to to the directory to which you unpacked the package. You have a sample program you can run by executing
+							<div class="console_container">
+								<p>mlpl.bat sample.mlpl</p>
+							</div>
+							in the console. Open any text editor and write your program using the documentaion below. Save it to the same directory that contains the unpacked package. Run your program by executing
+							<div class="console_container">
+								<p>mlpl.bat your_program.mlpl</p>
+							</div>
+							from the console.</p>
 						</div>
-						in the console. Open any text editor and write your program using the documentaion below. Save it to the same directory that contains the unpacked package. Run your program by executing
-						<div class="console_container">
-							<p>mlpl.bat your_program.mlpl</p>
-						</div>
-						from the console.</p>
+
 					</div>
 				</div>
-
-				<h3>Documentation</h3>
-				<div class="row">
-					<p><strong>read:</strong> This command enables you to supply an integer for your program to process. The value you supply is placed in a variable.</p>
-					<div class="code_container">
-						<p>read x</p>
-					</div>
-					<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
-					<p><strong>write:</strong> This command enables you to write out a variable, integer or a string to the console.</p>
-					<div class="code_container">
-						<p>write x</p>
-					</div>
-					<p>The instruction above writes a value of the variable to the console.</p>
-					<div class="code_container">
-						<p>write 5</p>
-					</div>
-					<p>The instruction above writes a value of the variable to the console.</p>
-					<div class="code_container">
-						<p>write "message"</p>
-					</div>
-					<p>The instruction above writes a value of the variable to the console.</p> If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
-				</div>
-
 			</div>
 		</div>
-		<!--
-		<h1>MLPL - Multilingual Programming Language</h1>
-		<div class="image_container">
-			<div class="image"><a href="mlpl_uk.html"><img src="images/flag-united-kingdom.jpg" alt="SRB" /></a></div>
-			<div class="image" ><a href="mlpl_rs.html"><img src="images/flag-serbia.jpg" alt="UK" /></a></div>
-		</div>
-		-->
+
 		<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>

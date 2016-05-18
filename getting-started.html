@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<title>MLPL - Multilingual Programming Language</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="MLPL Multilinguale Programming language">
+		<meta name="keywords" content="programming, education, kids, children">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
+	</head>
+	<body>
+		<div id="mainNav" class="navbar navbar-default mainNav">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MLPL<br> <small class="hidden-xs">Multilingual Programming Language</small></a>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+					<i class="glyphicon glyphicon-hamburger"></i>
+				</button>
+			</div>
+
+			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+				<!-- print navbar items -->
+				<li><a href="getting-started.html"><span class="gettingStartedLbl"></span></a></li>
+				<li><a href="docs.html"><span class="docsLbl"></span></a></li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
+					<ul id="languagePicker" class="dropdown-menu languagePicker">
+						<li class="active">
+							<a href="#" data-lang="sr"><img src="images/flag-united-kingdom.jpg" alt="SRB" /> srpski</a>
+						</li>
+						<li>
+							<a href="#" data-lang="en"><img src="images/flag-serbia.jpg" alt="UK" /> english</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+		<div class="container">
+			<div id="content_sr" class="collapse in">
+
+			</div>
+
+			<div id="content_en" class="collapse">
+
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>

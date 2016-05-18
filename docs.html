@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<title>MLPL - Multilingual Programming Language</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="MLPL Multilinguale Programming language">
+		<meta name="keywords" content="programming, education, kids, children">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
+	</head>
+	<body>
+		<div id="mainNav" class="navbar navbar-default mainNav">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MLPL<br> <small class="hidden-xs">Multilingual Programming Language</small></a>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+					<i class="glyphicon glyphicon-hamburger"></i>
+				</button>
+			</div>
+
+			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+				<!-- print navbar items -->
+				<li><a href="getting-started.html"><span class="gettingStartedLbl"></span></a></li>
+				<li><a href="docs.html"><span class="docsLbl"></span></a></li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
+					<ul id="languagePicker" class="dropdown-menu languagePicker">
+						<li class="active">
+							<a href="#" data-lang="sr"><img src="images/flag-united-kingdom.jpg" alt="SRB" /> srpski</a>
+						</li>
+						<li>
+							<a href="#" data-lang="en"><img src="images/flag-serbia.jpg" alt="UK" /> english</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+		<div class="container">
+			<div id="content_sr" class="collapse in">
+				<h1>Dokumentacija</h1>
+				<div class="row">
+					<p>U izradi</p>
+				</div>
+			</div>
+
+			<div id="content_en" class="collapse">
+				<h1>Documentation</h1>
+
+					<p><strong>read:</strong> This command enables you to supply an integer for your program to process. The value you supply is placed in a variable.</p>
+					<code>
+						read x
+					</code>
+
+					<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+					<p><strong>write:</strong> This command enables you to write out a variable, integer or a string to the console.</p>
+					<code>
+						write x
+					</code>
+
+					<p>The instruction above writes a value of the variable to the console.</p>
+					<code>
+						write 5
+					</code>
+
+					<p>The instruction above writes a value of the variable to the console.</p>
+					<code>
+						write "message"
+					</code>
+					<p>The instruction above writes a value of the variable to the console.</p> If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+			</div>
+		</div>
+
+		<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>
