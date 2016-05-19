@@ -1,3 +1,6 @@
+body.mlpl {
+  font-family: "Poppins", sans-serif; }
+
 .mlpl code {
   color: lightblue;
   background-color: black;
@@ -20,7 +23,8 @@
     .mainNav .navbar-brand > span {
       display: block; }
     .mainNav .navbar-brand .libLogo {
-      font-size: 30px; }
+      font-size: 30px;
+      font-weight: 700; }
     .mainNav .navbar-brand .libdesc {
       font-size: 14px; }
   .mainNav .flagImg {
