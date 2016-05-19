@@ -1,3 +1,6 @@
+.mainFooter ul.mainFooter__nav, .mainFooter ul.mainFooter__nav li {
+  list-style-type: none; }
+
 body.mlpl {
   font-family: "Poppins", sans-serif; }
 
@@ -41,5 +44,13 @@ body.mlpl {
     .mainNav .navbar-nav > li.languageDropdown > a {
       padding-top: 35px;
       padding-bottom: 35px; } }
+
+.mainFooter {
+  padding: 20px 0;
+  background-color: #999; }
+  .mainFooter ul.mainFooter__nav li a {
+    color: white; }
+    .mainFooter ul.mainFooter__nav li a:hover {
+      color: #f2f2f2; }
 
 /*# sourceMappingURL=main.css.map */
