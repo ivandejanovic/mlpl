@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by misa on 18.5.2016.
  */
 // Code goes here
@@ -12,7 +12,7 @@
                     locale:'sr',
                     langLabel:'srpski',
                     docsLbl:'Dokumentacija',
-                    gettingStartedLbl:'Kako po?eti',
+                    gettingStartedLbl:'Kako početi',
                     flagImgSrc:'images/flag-serbia.jpg'
                 },
                 en: {

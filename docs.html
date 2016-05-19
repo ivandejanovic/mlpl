@@ -11,8 +11,37 @@
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="styles/main.css">
 	</head>
-	<body>
+	<body class="mlpl">
 		<div id="mainNav" class="navbar navbar-default mainNav">
+
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">
+					<span class="libLogo">MLPL</span>
+					<span class="libdesc">Multilingual Programming Language</span>
+				</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+					<i class="glyphicon glyphicon-menu-hamburger"></i>
+				</button>
+			</div>
+
+			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+				<!-- navbar items -->
+				<li><a href="docs.html"><span class="docsLbl"></span></a></li>
+				<li class="dropdown languageDropdown">
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
+					<ul id="languagePicker" class="dropdown-menu languagePicker">
+						<li class="active">
+							<a href="#" data-lang="sr"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="SRB" /> srpski</a>
+						</li>
+						<li>
+							<a href="#" data-lang="en"><img class="flagImg" src="images/flag-serbia.jpg" alt="UK" /> english</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
 
 		<div class="container">
 			<div id="content_sr" class="collapse in">

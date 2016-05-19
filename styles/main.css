@@ -1,8 +1,41 @@
-.mainNav small {
-  font-size: 12px; }
-.mainNav .flagImg {
-  height: 30px;
-  width: auto;
-  margin-right: 10px; }
+.mlpl code {
+  color: lightblue;
+  background-color: black;
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px; }
+
+.mainNav {
+  min-height: 100px; }
+  .mainNav.navbar-default .navbar-toggle {
+    border-color: #ddd;
+    margin: 29px 10px; }
+  .mainNav .navbar-brand {
+    height: auto;
+    line-height: inherit; }
+    @media only screen and (min-width: 768px) {
+      .mainNav .navbar-brand {
+        padding-top: 19px;
+        padding-bottom: 19px; } }
+    .mainNav .navbar-brand > span {
+      display: block; }
+    .mainNav .navbar-brand .libLogo {
+      font-size: 30px; }
+    .mainNav .navbar-brand .libdesc {
+      font-size: 14px; }
+  .mainNav .flagImg {
+    height: 30px;
+    width: auto;
+    margin-right: 10px; }
+  @media only screen and (min-width: 768px) {
+    .mainNav .navbar-nav > li > a {
+      padding-top: 40px;
+      padding-bottom: 40px; } }
+  .mainNav .navbar-nav > li.languageDropdown > a.dropdown-toggle {
+    width: 160px; }
+  @media only screen and (min-width: 768px) {
+    .mainNav .navbar-nav > li.languageDropdown > a {
+      padding-top: 35px;
+      padding-bottom: 35px; } }
 
 /*# sourceMappingURL=main.css.map */
