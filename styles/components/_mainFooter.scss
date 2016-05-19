@@ -1,0 +1,17 @@
+.mainFooter {
+  padding:20px 0;
+  background-color:$tint-bg-footer;
+
+  ul.mainFooter__nav {
+    @extend %resetList;
+    li {
+      @extend %resetList;
+      a {
+        color:white;
+        &:hover {
+          color:darken(white,5%);
+        }
+      }
+    }
+  }
+}

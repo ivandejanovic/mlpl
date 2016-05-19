@@ -1,0 +1,54 @@
+.mainNav {
+  min-height:100px;
+
+  &.navbar-default .navbar-toggle {
+    border-color: #ddd;
+    margin: 29px 10px;
+  }
+
+  .navbar-brand {
+    height:auto;
+    line-height: inherit;
+    @include layout-tablet-portrait {
+      padding-top: 19px;
+      padding-bottom: 19px;
+    }
+    > span {
+      display:block;
+    }
+    .libLogo {
+      font-size:30px;
+      font-weight:700;
+    }
+    .libdesc {
+      font-size:14px;
+    }
+  }
+
+  .flagImg {
+    height:30px;
+    width:auto;
+    margin-right:10px;
+  }
+
+  .navbar-nav > li {
+    > a {
+      @include layout-tablet-portrait {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    }
+    &.languageDropdown {
+    > a {
+      &.dropdown-toggle {
+        width:160px;
+      }
+      @include layout-tablet-portrait {
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+      }
+    }
+  }
+
+}
