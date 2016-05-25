@@ -48,22 +48,42 @@
 		<div class="container">
 			<div id="content_sr" class="collapse in">
 				<h1>Dokumentacija</h1>
-				<div class="alert alert-info">
-					<span class="glyphicon glyphicon-pencil"></span>
-					U izradi.
-				</div>
+				<p><strong>procitaj:</strong> Ova instrukcija omogućava korisniku da unese broj u program radi obrade. Vrednost koju korisnik unese se smesta u promenjivu.</p>
+				<code>
+					procitaj x
+				</code>
+
+				<p>Gornja instrukcija čita broj koji korisnik unese preko terminala i smešta u promenjivu x.</p>
+				<p>Ako instrukcija nije poslednja instrukcija u bloku posle nje mora da sledi tačka-zarez. Ako je instrukcija poslednja instrukcija u bloku posle nje ne sme da sledi tačka-zarez.</p>
+				<p><strong>ispisi:</strong> Ova instrukcija omogućava da se promenjiva, broj ili string ispiše na terminal.</p>
+				<code>
+					ispisi x
+				</code>
+
+				<p>Gornja instrukcija ispisuje vrednost promenjive na terminal.</p>
+				<code>
+					ispisi 5
+				</code>
+
+				<p>Gornja instrukcija vrednost 5 na terminal.</p>
+				<code>
+					ispisi "poruka"
+				</code>
+				<p>Gornja instrukcija vrednost poruka na terminal.</p>
+				<p>Ako instrukcija nije poslednja instrukcija u bloku posle nje mora da sledi tačka-zarez. Ako je instrukcija poslednja instrukcija u bloku posle nje ne sme da sledi tačka-zarez.</p>
 			</div>
 
 			<div id="content_en" class="collapse">
 				<h1>Documentation</h1>
 
-				<p><strong>read:</strong> This command enables you to supply an integer for your program to process. The value you supply is placed in a variable.</p>
+				<p><strong>read:</strong> This instruction enables the user to supply an integer for the program to process. The value user supplies is placed in a variable.</p>
 				<code>
 					read x
 				</code>
 
-				<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
-				<p><strong>write:</strong> This command enables you to write out a variable, integer or a string to the console.</p>
+				<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon.</p>
+				<p>If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+				<p><strong>write:</strong> This instruction enables you to write out a variable, integer or a string to the console.</p>
 				<code>
 					write x
 				</code>
@@ -73,11 +93,12 @@
 					write 5
 				</code>
 
-				<p>The instruction above writes a value of the variable to the console.</p>
+				<p>The instruction above writes a value 5 to the console.</p>
 				<code>
 					write "message"
 				</code>
-				<p>The instruction above writes a value of the variable to the console.</p> If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+				<p>The instruction above writes a value message to the console.</p>
+				<p>If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
 			</div>
 		</div>
 
