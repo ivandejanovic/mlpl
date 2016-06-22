@@ -109,9 +109,39 @@
 					end
 				</code>
 
-				<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon.</p>
-				<p>If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
-				
+				<p>The code above in first instruction read a integer user types on a console and places it into variable x. In next line it checks if x is equals to zero. If x is equals to true message "Number you entered is zero." is printed. If x is not equals to true message "Number you entered is not zero." is printed.</p>
+				<p>Instructions then, else and end should not be followed by a semicolon.</p>
+				<p>Instruction if accepts two conditions. Equals "=" which checks if values compared are equal and less than "<" which checks if first value in comparation is less then the second value in comparation.</p>
+				<p>If you wish to check if the given variable is negative you would use the following code:</p>
+				<code>if x < 0 then</code>
+				<p>If you wish to check if the given variable is positive you would use the following code:</p>
+				<code>if 0 < x then</code>
+				<p><strong>repeat until:</strong> This instruction enables the user repeatly execute part of the code until the condition is met.</p>
+				<code>
+					x := 5;</br>
+					repeat</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;write "In the loop.";</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1</br>
+					until x = 0</br>
+					write "Exited the loop."</br>
+				</code>
+
+				<p>The code above in first instruction places value 5 into variable x. In next line it starts the repeat block. Then message "In the loop." is printed. Variable x is decremented by 1. Then the condition is checked in the until instruction. If value x is not zero the loop is repeated. If value in x is 0 the message "Exited the loop." is printed.</p>
+				<p>Instructions repeat and until should not be followed by a semicolon.</p>
+				<p>Instruction until accepts two conditions. Equals "=" which checks if values compared are equal and less than "<" which checks if first value in comparation is less then the second value in comparation.</p>
+				<p>If you wish to repeat the block until the given variable becomes negative you would use the following code:</p>
+				<code>until x < 0</code>
+				<p>If you wish to repeat the block until the given variable becomes positive you would use the following code:</p>
+				<code>until 0 < x</code>
+				<p><strong>comments</strong> The sign # is used for comments in the code. Anything between # signs is ignored by mlpl interpreter.</p>
+				<code>
+					#This is a comment.#</br>
+					read x;</br>
+					#This is another</br>
+					comment spanning</br>
+					multiple lines.#</br>
+					write x
+				</code>
 			</div>
 		</div>
 
