@@ -98,48 +98,48 @@
 					ispisi "Izašao iz petlje."</br>
 				</code>
 
-				<p>Kod iznad u prvoj instrukciji smešta vrednost 5 u promenjivu x. U sledećoj liniji počinje ponovi blok. Poruka "U petlji" se štampa. Promenjiva x se smanjuje za 1. Variable x is decremented by 1. Then the condition is checked in the until instruction. If value x is not zero the loop is repeated. If value in x is 0 the message "Exited the loop." is printed.</p>
-				<p>Instructions repeat and until should not be followed by a semicolon.</p>
-				<p>Instruction until accepts two conditions. Equals "=" which checks if values compared are equal and less than "<" which checks if first value in comparation is less then the second value in comparation.</p>
-				<p>If you wish to repeat the block until the given variable becomes negative you would use the following code:</p>
-				<code>until x < 0</code>
-				<p>If you wish to repeat the block until the given variable becomes positive you would use the following code:</p>
-				<code>until 0 < x</code>
-				<p><strong>comments:</strong> The sign # is used for comments in the code. Anything between # signs is ignored by mlpl interpreter.</p>
+				<p>Kod iznad u prvoj instrukciji smešta vrednost 5 u promenjivu x. U sledećoj liniji počinje ponovi blok. Poruka "U petlji." se štampa. Promenjiva x se umanjuje za 1. Onda se proverava uslov u dok instrukciji. Ako vrednost x nije nula petlja se ponavlja. Ako je vrednost x nula poruka "Izašao iz petlje." se štampa.</p>
+				<p>Iza instrukcija ponovi i dok ne sme da sledi tačka-zarez.</p>
+				<p>Instrukcija ako prihvata dva uslova. Jednako "=" koji proverava da li su vrednosti koje se porede jednake i manje od "<" koja proverava da li je prva vrednost u komparaciji manja od druge vrednosti u komparaciji.</p>
+				<p>Ako želite da ponavljate blok dok promenjiva ne postane negativna koristite sledeći kod:</p>
+				<code>dok x < 0</code>
+				<p>Ako želite da ponavljate blok dok promenjiva ne postane pozitivna koristite sledeći kod:</p>
+				<code>dok 0 < x</code>
+				<p><strong>komentari:</strong> Znak # se koristi za komentare u kodu. Sve sto se nalazi izmedju dva # znaka biće ignorisano od strane mlpl interpretera.</p>
 				<code>
-					#This is a comment.#</br>
-					read x;</br>
-					#This is another</br>
-					comment spanning</br>
-					multiple lines.#</br>
-					write x
+					#Ovo je komentar.#</br>
+					procitaj x;</br>
+					#Ovo je jos</br>
+					jedan komentar</br>
+					u više linija.#</br>
+					ispisi x
 				</code>
-				<p><strong>arithmetic operations:</strong> Basic arithmetic operations are supported. Arithmetic operations are supported only on integeres.</p>
-				<p>Assigment</p>
+				<p><strong>Aritmetičke operacije:</strong> Osnovne aritmetičke operacije su podržane. Aritmetičke operacije su podržane samo sa celim brojevima.</p>
+				<p>Dodela</p>
 				<code>
 					x := 2;
 				</code>
-				<p>Code above assign number 2 to variable x</p>
-				<p>Addition</p>
+				<p>Kod iznad dodeljuje broj 2 u promenjivu x.</p>
+				<p>Sabiranje</p>
 				<code>
 					y := x + 1;
 				</code>
-				<p>Previous instruction takes value from x adds one to it and store results in y.</p>
-				<p>Substration</p>
+				<p>Kod iznad uzima vrednost iz promenjive x dodaje 1 na nju i rezultat smešta u promenjivu y.</p>
+				<p>Oduzimanje</p>
 				<code>
 					y := y - 1;
 				</code>
-				<p>Previous instruction takes value from y substract one from it and store results in y.</p>
-				<p>Multiplication</p>
+				<p>Kod iznad uzima vrednost iz promenjive y oduzima 1 od nje i rezultat smešta u promenjivu y.</p>
+				<p>Množenje</p>
 				<code>
 					x := 2 * 3;
 				</code>
-				<p>Previous instruction takes multiply two with three and stores result in x.</p>
-				<p>Division</p>
+				<p>Kod iznad množi 2 sa 3 i rezultat smešta u promenjivu x.</p>
+				<p>Deljenje</p>
 				<code>
 					z := x / y;
 				</code>
-				<p>Previous instruction takes value from x divide it by vwith value taken from y and store results in z.</p>
+				<p>Kod iznad uzima vrednost i promenjive x deli sa vrednošću iz promenjive y i rezultat smešta u promenjivu z.</p>
 			</div>
 
 			<div id="content_en" class="collapse">
@@ -216,22 +216,22 @@
 				<code>
 					x := 2;
 				</code>
-				<p>Code above assign number 2 to variable x</p>
+				<p>Code above assign number 2 to variable x.</p>
 				<p>Addition</p>
 				<code>
 					y := x + 1;
 				</code>
-				<p>Previous instruction takes value from x adds one to it and store results in y.</p>
+				<p>Previous instruction takes value from x adds 1 to it and store results in y.</p>
 				<p>Substration</p>
 				<code>
 					y := y - 1;
 				</code>
-				<p>Previous instruction takes value from y substract one from it and store results in y.</p>
+				<p>Previous instruction takes value from y substract 1 from it and store results in y.</p>
 				<p>Multiplication</p>
 				<code>
 					x := 2 * 3;
 				</code>
-				<p>Previous instruction takes multiply two with three and stores result in x.</p>
+				<p>Previous instruction takes multiply 2 with 3 and stores result in x.</p>
 				<p>Division</p>
 				<code>
 					z := x / y;
