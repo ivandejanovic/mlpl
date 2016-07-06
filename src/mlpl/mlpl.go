@@ -34,13 +34,13 @@ import (
 )
 
 func main() {
-	abort, codeFile, reserved := cfg.HandleArgs()
+	abort, codeFile := cfg.HandleArgs()
 	
 	if abort {
 		return
 	}
 
-	tokens := parse.Parse(codeFile, reserved)
+	tokens := parse.Parse(codeFile)
 	treeNode := lexer.Lex(tokens)
 	bucketMap := analyze.BuildSymtab(treeNode)
 	analyze.TypeCheck(treeNode)

@@ -25,11 +25,12 @@ SOFTWARE.
 package cfg
 
 import (
-	"bufio"
+	"encoding/json"
 	"fmt"
-	"mlpl/types"
-	"os"
+	"mlpl/locale"
+	"io/ioutil"
 	"strings"
+	"os"
 )
 
 const (
@@ -39,58 +40,21 @@ const (
 	usage       = "Usage: mlpl <codefilename> [configurationfilename]"
 )
 
-func getDefaultReserved() []types.ReservedWord {
-	reserved := make([]types.ReservedWord, 0, 8)
 
-	reserved = append(reserved, types.ReservedWord{types.IF, "if"})
-	reserved = append(reserved, types.ReservedWord{types.THEN, "then"})
-	reserved = append(reserved, types.ReservedWord{types.ELSE, "else"})
-	reserved = append(reserved, types.ReservedWord{types.END, "end"})
-	reserved = append(reserved, types.ReservedWord{types.REPEAT, "repeat"})
-	reserved = append(reserved, types.ReservedWord{types.UNTIL, "until"})
-	reserved = append(reserved, types.ReservedWord{types.READ, "read"})
-	reserved = append(reserved, types.ReservedWord{types.WRITE, "write"})
 
-	return reserved
-}
-
-func getConfigReservedWords(configFile string) []types.ReservedWord {
-	reserved := make([]types.ReservedWord, 0, 8)
-	var localization []string
-	const length = 8
-
-	config, err := os.Open(configFile)
+func getLocaleFromConfig(configFile string) {
+	config, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		panic(err)
 	}
 
-	scanner := bufio.NewScanner(config)
-	for scanner.Scan() {
-		localization = append(localization, scanner.Text())
-	}
-
-	defer config.Close()
-
-	if len(localization) != length {
-		fmt.Println("Configuration file must contain localizations for eight key word.")
-	}
-
-	reserved = append(reserved, types.ReservedWord{types.IF, localization[0]})
-	reserved = append(reserved, types.ReservedWord{types.THEN, localization[1]})
-	reserved = append(reserved, types.ReservedWord{types.ELSE, localization[2]})
-	reserved = append(reserved, types.ReservedWord{types.END, localization[3]})
-	reserved = append(reserved, types.ReservedWord{types.REPEAT, localization[4]})
-	reserved = append(reserved, types.ReservedWord{types.UNTIL, localization[5]})
-	reserved = append(reserved, types.ReservedWord{types.READ, localization[6]})
-	reserved = append(reserved, types.ReservedWord{types.WRITE, localization[7]})
-
-	return reserved
+	json.Unmarshal(config, locale.Locale)
+	locale.AssembleReserved()
 }
 
-func HandleArgs() (bool, string, []types.ReservedWord) {
+func HandleArgs() (bool, string) {
 	var abort bool = true
 	var codeFile string
-	var reserved []types.ReservedWord
 
 	args := os.Args[1:]
 	argc := len(args)
@@ -99,7 +63,6 @@ func HandleArgs() (bool, string, []types.ReservedWord) {
 		var flag string = empty
 		var flagArg string = args[index]
 
-		
 		if strings.HasPrefix(flagArg, doubleMinus) {
 			flag = strings.TrimPrefix(flagArg, doubleMinus)
 		} else if strings.HasPrefix(flagArg, minus) {
@@ -116,28 +79,28 @@ func HandleArgs() (bool, string, []types.ReservedWord) {
 				fmt.Println("  -h, --help       Prints help")
 				fmt.Println("  -v, --version    Prints version")
 			case "v", "version":
-				fmt.Println("MLPL interpreter version 0.2.1")
+				fmt.Println("MLPL interpreter version 0.2.2")
 			default:
 				fmt.Println("Invalid usage. For correct usage examples please try: mlpl -h")
 			}
-			return abort, codeFile, reserved
+			return abort, codeFile
 		}
 	}
 
 	if argc < 1 || argc > 2 {
 		fmt.Println(usage)
-		return abort, codeFile, reserved
+		return abort, codeFile
 	}
 
 	if argc == 2 {
-		reserved = getConfigReservedWords(args[1])
+		getLocaleFromConfig(args[1])
 	} else {
-		reserved = getDefaultReserved()
+		locale.AssembleReserved()
 	}
 
 	//If we get this far we have good data to process
 	abort = false
 	codeFile = args[0]
 
-	return abort, codeFile, reserved
+	return abort, codeFile
 }

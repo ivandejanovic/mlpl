@@ -28,6 +28,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"mlpl/locale"
 	"mlpl/types"
 	"os"
 	"unicode"
@@ -68,7 +69,17 @@ type parseBuffer struct {
 	reader *bufio.Reader
 }
 
-func (buffer *parseBuffer) getToken(reserved []types.ReservedWord) types.Token {
+func reservedLookup(s string) types.TokenType {
+	for index := 0; index < len(locale.Locale.Reserved); index++ {
+		if s == locale.Locale.Reserved[index].Str {
+			return locale.Locale.Reserved[index].TokenType
+		}
+	}
+
+	return types.ID
+}
+
+func (buffer *parseBuffer) getToken() types.Token {
 	var currentToken types.TokenType
 	var currentTokenString string
 	var currentTokenRunes []rune
@@ -195,7 +206,7 @@ func (buffer *parseBuffer) getToken(reserved []types.ReservedWord) types.Token {
 		if state == done {
 			currentTokenString = string(currentTokenRunes)
 			if currentToken == types.ID {
-				currentToken = reservedLookup(currentTokenString, reserved)
+				currentToken = reservedLookup(currentTokenString)
 			}
 		}
 	}
@@ -203,17 +214,7 @@ func (buffer *parseBuffer) getToken(reserved []types.ReservedWord) types.Token {
 	return types.Token{currentToken, currentTokenString, buffer.lineno}
 }
 
-func reservedLookup(s string, reserved []types.ReservedWord) types.TokenType {
-	for index := 0; index < len(reserved); index++ {
-		if s == reserved[index].Str {
-			return reserved[index].TokenType
-		}
-	}
-
-	return types.ID
-}
-
-func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
+func Parse(sourceFile string) []types.Token {
 	var tokens []types.Token
 
 	source, err := os.Open(sourceFile)
@@ -225,7 +226,7 @@ func Parse(sourceFile string, reserved []types.ReservedWord) []types.Token {
 	buffer := &parseBuffer{0, reader}
 
 	for moreTokens := true; moreTokens; {
-		token := buffer.getToken(reserved)
+		token := buffer.getToken()
 		tokens = append(tokens, token)
 
 		if token.TokenType == types.ENDFILE {
