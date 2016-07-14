@@ -33,6 +33,51 @@ import (
 type LocaleType struct {
 	ReservedArray []string
 	Reserved      []types.ReservedWord
+
+	ParseError string
+
+	LexerSyntaxError       string
+	LexerReservedWordError string
+	LexerAssignError       string
+	LexerLTError           string
+	LexerEQError           string
+	LexerLPARENError       string
+	LexerRPARENError       string
+	LexerSEMIError         string
+	LexerPLUSError         string
+	LexerMINUSError        string
+	LexerTIMESError        string
+	LexerOVERError         string
+	LexerENDFILEError      string
+	LexerNUMError          string
+	LexerIDError           string
+	LexerERRORError        string
+	LexerDEFAULTError      string
+	LexerABORTINGError     string
+
+	AnalyzeTypePrefixError string
+	AnalyzeTypeOpError     string
+	AnalyzeTypeIfError     string
+	AnalyzeTypeAssignError string
+	AnalyzeTypeWriteError  string
+	AnalyzeTypeRepeatError string
+
+	CodegenUnknownOperatorError string
+	CodegenUnknownTypeError     string
+
+	VmMissingColonError             string
+	VmMemoryLocationError           string
+	VmMemoryToLargeError            string
+	VmMissingOpcodeError            string
+	VmInvalidOpcodeError            string
+	VmInvalidNumberOfArgumentsError string
+	VmInvalidFirstArgumentError     string
+	VmInvalidSecondArgumentError    string
+	VmInvalidThirdArgumentError     string
+	VmInvalidProgramCounterError    string
+	VmInvalidMemoryAddressError     string
+	VmNonIntegerEnteredError        string
+	VmDivisionWIthZeroError         string
 }
 
 var Locale *LocaleType = new(LocaleType)
@@ -52,6 +97,51 @@ func init() {
 	reserved = append(reserved, "write")
 
 	Locale.ReservedArray = reserved
+
+	Locale.ParseError = "Scanner bug: state= %d\n"
+
+	Locale.LexerSyntaxError = "Syntax error at line %d, unexpected token -> "
+	Locale.LexerReservedWordError = "reserved word: %s\n"
+	Locale.LexerAssignError = ":=\n"
+	Locale.LexerLTError = "<\n"
+	Locale.LexerEQError = "=\n"
+	Locale.LexerLPARENError = "(\n"
+	Locale.LexerRPARENError = ")\n"
+	Locale.LexerSEMIError = ";\n"
+	Locale.LexerPLUSError = "+\n"
+	Locale.LexerMINUSError = "-\n"
+	Locale.LexerTIMESError = "*\n"
+	Locale.LexerOVERError = "/\n"
+	Locale.LexerENDFILEError = "EOF\n"
+	Locale.LexerNUMError = "NUM, name= %s\n"
+	Locale.LexerIDError = "ID, name= %s\n"
+	Locale.LexerERRORError = "ERROR: %s\n"
+	Locale.LexerDEFAULTError = "Unknown token: %d\n"
+	Locale.LexerABORTINGError = "Aborting\n"
+
+	Locale.AnalyzeTypePrefixError = "Type error at line %d: %s\n"
+	Locale.AnalyzeTypeOpError = "Op applied to non-integer"
+	Locale.AnalyzeTypeIfError = "if test is not Boolean"
+	Locale.AnalyzeTypeAssignError = "assignment of non-integer value"
+	Locale.AnalyzeTypeWriteError = "write of non-integer or non-string value"
+	Locale.AnalyzeTypeRepeatError = "repeat test is not Boolean"
+
+	Locale.CodegenUnknownOperatorError = "Unknown operator for code generation"
+	Locale.CodegenUnknownTypeError = "Unknown type for code generation"
+
+	Locale.VmMissingColonError = "Missing colon on line: %d\n"
+	Locale.VmMemoryLocationError = "Invalid memory location %s on line: %d\n"
+	Locale.VmMemoryToLargeError = "To large memory location %d on line: %d\n"
+	Locale.VmMissingOpcodeError = "Missing opcode on location %d and line: %d\n"
+	Locale.VmInvalidOpcodeError = "Invalid opcode on location %d and line: %d\n"
+	Locale.VmInvalidNumberOfArgumentsError = "Invalid number of arguments on location %d and line: %d\n"
+	Locale.VmInvalidFirstArgumentError = "Invalid first argument on location %d and line: %d\n"
+	Locale.VmInvalidSecondArgumentError = "Invalid second argument on location %d and line: %d\n"
+	Locale.VmInvalidThirdArgumentError = "Invalid third argument on location %d and line: %d\n"
+	Locale.VmInvalidProgramCounterError = "Invalid program counter value: %d\n"
+	Locale.VmInvalidMemoryAddressError = "Invalid memory address value: %d\n"
+	Locale.VmNonIntegerEnteredError = "Non integer entered."
+	Locale.VmDivisionWIthZeroError = "Division with zero."
 }
 
 func AssembleReserved() {
