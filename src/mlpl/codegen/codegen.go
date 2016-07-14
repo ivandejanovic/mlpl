@@ -28,6 +28,7 @@ import (
 	"errors"
 	"fmt"
 	"mlpl/types"
+	"mlpl/locale"
 )
 
 const (
@@ -251,7 +252,7 @@ func genExp(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBuf
 			codeBuf.emitRM("LDA", pc, 1, pc)
 			codeBuf.emitRM("LDC", ac, 1, ac)
 		default:
-			panic(errors.New("Unknown operator"))
+			panic(errors.New(locale.Locale.CodegenUnknownOperatorError))
 		}
 	}
 }
@@ -265,7 +266,7 @@ func cGen(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBuf *
 		case types.ExpK:
 			genExp(treeNode, bucketMap, codeBuf)
 		default:
-			err := errors.New("Unknow type for code generation")
+			err := errors.New(locale.Locale.CodegenUnknownTypeError)
 			panic(err)
 		}
 		cGen(treeNode.Sibling, bucketMap, codeBuf)
