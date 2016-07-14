@@ -27,6 +27,7 @@ package lexer
 import (
 	"errors"
 	"fmt"
+	"mlpl/locale"
 	"mlpl/types"
 	"strconv"
 )
@@ -38,45 +39,45 @@ type lexBuffer struct {
 }
 
 func syntaxError(token types.Token) {
-	fmt.Printf("Syntax error at line %d, unexpected token -> ", token.Lineno)
+	fmt.Printf(locale.Locale.LexerSyntaxError, token.Lineno)
 
 	switch token.TokenType {
 	case types.IF, types.THEN, types.ELSE, types.END, types.REPEAT, types.UNTIL, types.READ, types.WRITE:
-		fmt.Printf("reserved word: %s\n", token.TokenString)
+		fmt.Printf(locale.Locale.LexerReservedWordError, token.TokenString)
 	case types.ASSIGN:
-		fmt.Printf(":=\n")
+		fmt.Printf(locale.Locale.LexerAssignError)
 	case types.LT:
-		fmt.Printf("<\n")
+		fmt.Printf(locale.Locale.LexerLTError)
 	case types.EQ:
-		fmt.Printf("=\n")
+		fmt.Printf(locale.Locale.LexerEQError)
 	case types.LPAREN:
-		fmt.Printf("(\n")
+		fmt.Printf(locale.Locale.LexerLPARENError)
 	case types.RPAREN:
-		fmt.Printf(")\n")
+		fmt.Printf(locale.Locale.LexerRPARENError)
 	case types.SEMI:
-		fmt.Printf(";\n")
+		fmt.Printf(locale.Locale.LexerSEMIError)
 	case types.PLUS:
-		fmt.Printf("+\n")
+		fmt.Printf(locale.Locale.LexerPLUSError)
 	case types.MINUS:
-		fmt.Printf("-\n")
+		fmt.Printf(locale.Locale.LexerMINUSError)
 	case types.TIMES:
-		fmt.Printf("*\n")
+		fmt.Printf(locale.Locale.LexerTIMESError)
 	case types.OVER:
-		fmt.Printf("/\n")
+		fmt.Printf(locale.Locale.LexerOVERError)
 	case types.ENDFILE:
-		fmt.Printf("EOF\n")
+		fmt.Printf(locale.Locale.LexerENDFILEError)
 	case types.NUM:
-		fmt.Printf("NUM, name= %s\n", token.TokenString)
+		fmt.Printf(locale.Locale.LexerNUMError, token.TokenString)
 	case types.ID:
-		fmt.Printf("ID, name= %s\n", token.TokenString)
+		fmt.Printf(locale.Locale.LexerIDError, token.TokenString)
 	case types.ERROR:
-		fmt.Printf("ERROR: %s\n", token.TokenString)
+		fmt.Printf(locale.Locale.LexerERRORError, token.TokenString)
 	default:
 		// Should never happen.
-		fmt.Printf("Unknown token: %d\n", token.TokenType)
+		fmt.Printf(locale.Locale.LexerDEFAULTError, token.TokenType)
 	}
 
-	err := errors.New("Aborting.")
+	err := errors.New(locale.Locale.LexerABORTINGError)
 	if err != nil {
 		panic(err)
 	}
