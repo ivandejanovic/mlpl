@@ -190,12 +190,12 @@ func (buffer *parseBuffer) getToken() types.Token {
 			}
 		case done:
 			//Should never happen
-			fmt.Printf("Scanner bug: state= %d\n", state)
+			fmt.Printf(locale.Locale.ParseError, state)
 			state = done
 			currentToken = types.ERROR
 		default:
 			//Should never happen
-			fmt.Printf("Scanner bug: state= %d\n", state)
+			fmt.Printf(locale.Locale.ParseError, state)
 			state = done
 			currentToken = types.ERROR
 		}
