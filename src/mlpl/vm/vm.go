@@ -28,6 +28,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"mlpl/locale"
 )
 
 const (
@@ -141,24 +142,24 @@ func (vm *vmMem) loadCode(code []string) bool {
 
 		instSlice := strings.Split(strings.Trim(inst, " "), ":")
 		if len(instSlice) < 2 {
-			fmt.Printf("Missing colon on line: %d\n", lineNo)
+			fmt.Printf(locale.Locale.VmMissingColonError, lineNo)
 			return false
 		}
 
 		loc, err = strconv.Atoi(strings.Trim(instSlice[0], " "))
 		if err != nil {
-			fmt.Printf("Invalid location %s on line: %d\n", instSlice[0], lineNo)
+			fmt.Printf(locale.Locale.VmMemoryLocationError, instSlice[0], lineNo)
 			return false
 		}
 		if loc > iaddr_size {
-			fmt.Printf("To large location %d on line: %d\n", loc, lineNo)
+			fmt.Printf(locale.Locale.VmMemoryToLargeError, loc, lineNo)
 			return false
 		}
 
 		opValue := strings.Trim(instSlice[1], " ")
 		opIndex := strings.Index(opValue, " ")
 		if opIndex == -1 {
-			fmt.Printf("Missing opcode on location %d and line: %d\n", loc, lineNo)
+			fmt.Printf(locale.Locale.VmMissingOpcodeError, loc, lineNo)
 			return false
 		}
 
@@ -168,7 +169,7 @@ func (vm *vmMem) loadCode(code []string) bool {
 		if !ok {
 			fmt.Println(inst)
 			fmt.Println(opCodeKey)
-			fmt.Printf("Invalid opcode on location %d and line: %d\n", loc, lineNo)
+			fmt.Printf(locale.Locale.VmInvalidOpcodeError, loc, lineNo)
 			return false
 		}
 
@@ -176,25 +177,25 @@ func (vm *vmMem) loadCode(code []string) bool {
 		case opHALT, opIN, opOUT, opADD, opSUB, opMUL, opDIV:
 			argsSlice := strings.Split(args, ",")
 			if len(argsSlice) != 3 {
-				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidNumberOfArgumentsError, loc, lineNo)
 				return false
 			}
 
 			arg1, err = strconv.Atoi(strings.Trim(argsSlice[0], " "))
 			if err != nil {
-				fmt.Printf("Invalid first argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidFirstArgumentError, loc, lineNo)
 				return false
 			}
 
 			arg2, err = strconv.Atoi(strings.Trim(argsSlice[1], " "))
 			if err != nil {
-				fmt.Printf("Invalid second argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidSecondArgumentError, loc, lineNo)
 				return false
 			}
 
 			arg3, err = strconv.Atoi(strings.Trim(argsSlice[2], " "))
 			if err != nil {
-				fmt.Printf("Invalid third argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidThirdArgumentError, loc, lineNo)
 				return false
 			}
 
@@ -205,31 +206,31 @@ func (vm *vmMem) loadCode(code []string) bool {
 		case opLD, opST, opLDA, opLDC, opJLT, opJLE, opJGT, opJGE, opJEQ, opJNE:
 			argsSlice1 := strings.Split(args, ",")
 			if len(argsSlice1) != 2 {
-				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidNumberOfArgumentsError, loc, lineNo)
 				return false
 			}
 
 			argsSlice2 := strings.Split(argsSlice1[1], "(")
 			if len(argsSlice2) != 2 {
-				fmt.Printf("Invalid number of arguments on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidNumberOfArgumentsError, loc, lineNo)
 				return false
 			}
 
 			arg1, err = strconv.Atoi(strings.Trim(argsSlice1[0], " "))
 			if err != nil {
-				fmt.Printf("Invalid first argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidFirstArgumentError, loc, lineNo)
 				return false
 			}
 
 			arg2, err = strconv.Atoi(strings.Trim(argsSlice2[0], " "))
 			if err != nil {
-				fmt.Printf("Invalid second argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidSecondArgumentError, loc, lineNo)
 				return false
 			}
 
 			arg3, err = strconv.Atoi(strings.Trim(argsSlice2[1], ")"))
 			if err != nil {
-				fmt.Printf("Invalid third argument on location %d and line: %d\n", loc, lineNo)
+				fmt.Printf(locale.Locale.VmInvalidThirdArgumentError, loc, lineNo)
 				return false
 			}
 		case opPRNT:
@@ -253,7 +254,7 @@ func (vm *vmMem) executeCode() {
 		var str string = ""
 		pc := vm.reg[pc_reg]
 		if pc < 0 || pc > iaddr_size {
-			fmt.Printf("Invalid program counter value: %d\n", pc)
+			fmt.Printf(locale.Locale.VmInvalidProgramCounterError, pc)
 			return
 		}
 
@@ -272,7 +273,7 @@ func (vm *vmMem) executeCode() {
 			m = inst.iarg2 + vm.reg[s]
 
 			if m < 0 || m > daddr_size {
-				fmt.Printf("Invalid memory address value: %d\n", m)
+				fmt.Printf(locale.Locale.VmInvalidMemoryAddressError, m)
 				return
 			}
 		case opLDA, opLDC, opJLT, opJLE, opJGT, opJGE, opJEQ, opJNE:
@@ -293,7 +294,7 @@ func (vm *vmMem) executeCode() {
 			var num int = 0
 			_, err := fmt.Scanf("%d", &num)
 			if err != nil {
-				fmt.Println("Non integer entered.")
+				fmt.Println(locale.Locale.VmNonIntegerEnteredError)
 				return
 			}
 			vm.reg[r] = num
@@ -307,7 +308,7 @@ func (vm *vmMem) executeCode() {
 			vm.reg[r] = vm.reg[s] * vm.reg[t]
 		case opDIV:
 			if vm.reg[t] == 0 {
-				fmt.Println("Division with zero.")
+				fmt.Println(locale.Locale.VmDivisionWIthZeroError)
 				return
 			}
 			vm.reg[r] = vm.reg[s] / vm.reg[t]
