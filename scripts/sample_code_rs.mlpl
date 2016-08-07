@@ -9,7 +9,7 @@ ako 0 < x onda # ne racunaj ako je x <= 0 #
   ponovi
     faktorijel := faktorijel * x;
     x := x - 1
-  dok x = 0;
+  do x = 0;
   ispisi "Faktorijel za uneti broj je";
   ispisi faktorijel  # ispisi faktorijel od x #
 inace
