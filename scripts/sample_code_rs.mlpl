@@ -8,11 +8,11 @@ ako 0 < x onda # ne racunaj ako je x <= 0 #
   faktorijel := 1;
   ponovi
     faktorijel := faktorijel * x;
-    x := x - 1
-  do x = 0;
+    x := x - 1;
+  do x = 0
   ispisi "Faktorijel za uneti broj je";
-  ispisi faktorijel  # ispisi faktorijel od x #
+  ispisi faktorijel;  # ispisi faktorijel od x #
 inace
-  ispisi "Niste uneli pozitivan broj"
+  ispisi "Niste uneli pozitivan broj";
 kraj
-ispisi "Kraj programa"
+ispisi "Kraj programa";

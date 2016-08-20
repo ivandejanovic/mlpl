@@ -237,6 +237,7 @@ func (buffer *lexBuffer) assignStmt() *types.TreeNode {
 	buffer.match(types.ID)
 	buffer.match(types.ASSIGN)
 	node.Children = append(node.Children, buffer.exp())
+	buffer.match(types.SEMI)
 
 	return node
 }
@@ -249,6 +250,7 @@ func (buffer *lexBuffer) readStmt() *types.TreeNode {
 		node.Name = buffer.token.TokenString
 	}
 	buffer.match(types.ID)
+	buffer.match(types.SEMI)
 
 	return node
 }
@@ -258,6 +260,7 @@ func (buffer *lexBuffer) writeStmt() *types.TreeNode {
 
 	buffer.match(types.WRITE)
 	node.Children = append(node.Children, buffer.exp())
+	buffer.match(types.SEMI)
 
 	return node
 }
@@ -291,7 +294,6 @@ func (buffer *lexBuffer) stmtSequence() *types.TreeNode {
 		buffer.token.TokenType != types.END &&
 		buffer.token.TokenType != types.ELSE &&
 		buffer.token.TokenType != types.UNTIL {
-		buffer.match(types.SEMI)
 		q := buffer.statement()
 		if q != nil {
 			if node == nil {
