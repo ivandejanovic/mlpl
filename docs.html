@@ -50,34 +50,34 @@
 				<h1>Dokumentacija</h1>
 				<p><strong>procitaj:</strong> Ova instrukcija omogućava korisniku da unese broj u program radi obrade. Vrednost koju korisnik unese se smesta u promenjivu.</p>
 				<code>
-					procitaj x
+					procitaj x;
 				</code>
 
 				<p>Gornja instrukcija čita broj koji korisnik unese preko terminala i smešta u promenjivu x.</p>
-				<p>Ako instrukcija nije poslednja instrukcija u bloku posle nje mora da sledi tačka-zarez. Ako je instrukcija poslednja instrukcija u bloku posle nje ne sme da sledi tačka-zarez.</p>
+				<p>Posle ove instrukcije mora da sledi tačka-zarez.</p>
 				<p><strong>ispisi:</strong> Ova instrukcija omogućava da se promenjiva, broj ili string ispiše na terminal.</p>
 				<code>
-					ispisi x
+					ispisi x;
 				</code>
 
 				<p>Gornja instrukcija ispisuje vrednost promenjive na terminal.</p>
 				<code>
-					ispisi 5
+					ispisi 5;
 				</code>
 
 				<p>Gornja instrukcija vrednost 5 na terminal.</p>
 				<code>
-					ispisi "poruka"
+					ispisi "poruka";
 				</code>
 				<p>Gornja instrukcija vrednost poruka na terminal.</p>
-				<p>Ako instrukcija nije poslednja instrukcija u bloku posle nje mora da sledi tačka-zarez. Ako je instrukcija poslednja instrukcija u bloku posle nje ne sme da sledi tačka-zarez.</p>
+				<p>Posle ove instrukcije mora da sledi tačka-zarez.</p>
 				<p><strong>ako onda inace kraj:</strong> Ova instrukcija omogućava korisniku da zada uslov. U zavisnosti od toga da li je uslov ispunjen ili ne jedan ili drugi blok instrukcija se izvršava.</p>
 				<code>
 					procitaj x;</br>
 					ako x = 0 onda</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli je nula."</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli je nula.";</br>
 					inace</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli nije nula."</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli nije nula.;"</br>
 					kraj
 				</code>
 
@@ -93,9 +93,9 @@
 					x := 5;</br>
 					ponovi</br>
 						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "U petlji.";</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1;</br>
 					do x = 0</br>
-					ispisi "Izašao iz petlje."</br>
+					ispisi "Izašao iz petlje.;"</br>
 				</code>
 
 				<p>Kod iznad u prvoj instrukciji smešta vrednost 5 u promenjivu x. U sledećoj liniji počinje ponovi blok. Poruka "U petlji." se štampa. Promenjiva x se umanjuje za 1. Onda se proverava uslov u dok instrukciji. Ako vrednost x nije nula petlja se ponavlja. Ako je vrednost x nula poruka "Izašao iz petlje." se štampa.</p>
@@ -112,7 +112,7 @@
 					#Ovo je jos</br>
 					jedan komentar</br>
 					u više linija.#</br>
-					ispisi x
+					ispisi x;
 				</code>
 				<p><strong>Aritmetičke operacije:</strong> Osnovne aritmetičke operacije su podržane. Aritmetičke operacije su podržane samo sa celim brojevima.</p>
 				<p>Dodela</p>
@@ -147,34 +147,34 @@
 
 				<p><strong>read:</strong> This instruction enables the user to supply an integer for the program to process. The value user supplies is placed in a variable.</p>
 				<code>
-					read x
+					read x;
 				</code>
 
 				<p>The instruction above read a integer user types on a console and places it into variable x. If this instruction is not the last instruction in the block it has to be followed by a semicolon.</p>
-				<p>If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+				<p>This instruction must not be followed by a semicolon.</p>
 				<p><strong>write:</strong> This instruction enables you to write out a variable, integer or a string to the console.</p>
 				<code>
-					write x
+					write x;
 				</code>
 
 				<p>The instruction above writes a value of the variable to the console.</p>
 				<code>
-					write 5
+					write 5;
 				</code>
 
 				<p>The instruction above writes a value 5 to the console.</p>
 				<code>
-					write "message"
+					write "message";
 				</code>
 				<p>The instruction above writes a value message to the console.</p>
-				<p>If this instruction is not the last instruction in the block it has to be followed by a semicolon. If the instruction is the last instruction in the block it must not be followed by a semicolon.</p>
+				<p>This instruction has to be followed by a semicolon.</p>
 				<p><strong>if then else end:</strong> This instruction enables the user to provide a condition. Depending if the condition is met or not one of other block of instructions is executed.</p>
 				<code>
 					read x;</br>
 					if x = 0 then</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;write "Number you entered is zero."</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;write "Number you entered is zero.";</br>
 					else</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;write "Number you entered is not zero."</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;write "Number you entered is not zero.";</br>
 					end
 				</code>
 
@@ -190,9 +190,9 @@
 					x := 5;</br>
 					repeat</br>
 						&nbsp;&nbsp;&nbsp;&nbsp;write "In the loop.";</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1;</br>
 					until x = 0</br>
-					write "Exited the loop."</br>
+					write "Exited the loop.";</br>
 				</code>
 
 				<p>The code above in first instruction places value 5 into variable x. In next line it starts the repeat block. Then message "In the loop." is printed. Variable x is decremented by 1. Then the condition is checked in the until instruction. If value x is not zero the loop is repeated. If value in x is 0 the message "Exited the loop." is printed.</p>
