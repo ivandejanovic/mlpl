@@ -36,9 +36,6 @@ const (
 	daddr_size int = 4096
 	no_regs    int = 8
 	pc_reg     int = 7
-
-	linesize int = 121
-	wordsize int = 20
 )
 
 type opclass int
