@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="rs">
+<head>
+	<title>MLPL - Multilingual Programming Language</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="MLPL Multilinguale Programming language">
+	<meta name="keywords" content="programming, education, kids, children">
+	<meta charset="utf-8">
+	<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+<body class="mlpl">
+<div id="mainNav" class="navbar navbar-default mainNav">
+
+	<div class="container">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand">
+				<span class="libLogo">MLPL</span>
+				<span class="libdesc">Višejezički Programski Jezik</span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+				<i class="glyphicon glyphicon-menu-hamburger"></i>
+			</button>
+		</div>
+
+		<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+			<!-- navbar items -->
+			<li><a href="index_rs.html"><span>Kako početi</span></a></li>
+			<li><a href="docs_rs.html"><span>Dokumentacija</span></a></li>
+			<li class="dropdown languageDropdown">
+				<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"><img class="flagImg" src="images/flag-serbia.jpg">srpski</span> <span class="caret"></span></a>
+				<ul id="languagePicker" class="dropdown-menu languagePicker">
+					<li class="active">
+						<a href="index_rs.html" data-lang="sr"><img class="flagImg" src="images/flag-serbia.jpg" alt="SRB" /> srpski</a>
+					</li>
+					<li>
+						<a href="index.html" data-lang="en"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="UK" /> english</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="content_sr" class="collapse in">
+	<div class="container">
+		<div class="jumbotron">
+			<h1>MLPL - Višejezički Programski Jezik</h1>
+
+			<h3>Šta je MLPL?</h3>
+
+			<p>Problem sa većinom programskih jezika koji se trenutno koriste je što zahtevaju odredjeno znanje engleskog jezika i pisma. Deci iz zemalja u kojima se ne govori engleski je stoga teže da počnu da koriste neki programski jezik za razliku od dece kojoj je engleski maternji jezik.</p>
+			<p>Ideja sa MLPL-om je da se napravi interpreter za jezik jednostavne sintakse koja moze lako da se prevede. Programer bi pored fajla koji sadrži program prosledio i fajl koji sadrži sve ključne reči prevedene na programerov maternji jezik. Na taj način bi deca kojoj engleski jezik nije maternji mogla da počnu da programiraju ranije.</p>
+		</div>
+
+		<h2 class="text-center">Kako Početi</h2>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="text-center">
+					<p>Ako koristite Windows možete preuzeti paket ovde:</p>
+					<p>
+						<a class="btn btn-lg btn-primary" href="files/mlpl_windows_srpski.zip">MLPL za Windows <i class="fa fa-windows" aria-hidden="true"></i></a>
+					</p>
+				</div>
+
+				<div class="well">
+					<p>Ako koristite Windows raspakujte sadržaj paketa. Pokrenite konzolu i idite u direktorijum u koji ste raspakovali sadržaj paketa. Tu se nalazi primer programa koji možete pokrenuti komandom</p>
+					<div class="terminal_container">
+						<p>mlpl.bat primer.mlpl</p>
+					</div>
+					<p>u terminalu. Otvorite bilo koji tekst editor i napišite program koristeći dokumentaciju. Snimite ga u isti direktorijum koji sadrži raspakovan paket. Pokrenite pogram izvršavajući komandu</p>
+					<div class="terminal_container">
+						<p>mlpl.bat tvoj_program.mlpl</p>
+					</div>
+					<p>u terminalu.</p>
+				</div>
+			</div>
+			<div class="col-sm-6">
+
+				<div class="text-center">
+					<p>Ako koristite Linux možete preuzeti paket ovde:</p>
+					<p>
+						<a class="btn btn-lg btn-primary" href="files/mlpl_linux_srpski.zip">MLPL za Linux <i class="fa fa-linux" aria-hidden="true"></i></a>
+					</p>
+				</div>
+
+				<div class="well">
+					<p>Ako koristite Linux raspakujte sadržaj paketa. Pokrenite terminal i idite u direktorijum u koji ste raspakovali sadržaj paketa. Tu se nalazi primer programa koji možete pokrenuti komandom</p>
+					<div class="terminal_container">
+						<p>./mlpl.sh primer.mlpl</p>
+					</div>
+					<p>u terminalu. Otvorite bilo koji tekst editor i napišite program koristeći dokumentaciju. Snimite ga u isti direktorijum koji sadrži raspakovan paket. Pokrenite pogram izvršavajući komandu</p>
+					<div class="terminal_container">
+						<p>./mlpl.sh tvoj_program.mlpl</p>
+					</div>
+					<p>u terminalu.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="mainFooter">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<ul class="mainFooter__nav">
+						<li><a href="index_rs.html">Početna</a></li>
+						<li><a href="docs_rs.html">Dokumentacija</a></li>
+						<li><a href="https://github.com/ivandejanovic/mlpl">MLPL na Github-u</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<strong>Autor MLPL-a:</strong> Ivan Dejanović
+				</div>
+				<div class="col-sm-6">
+					<strong>Dizajn sajta:</strong> Ivan Stamenković
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

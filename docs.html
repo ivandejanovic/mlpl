@@ -28,16 +28,16 @@
 
 			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
 				<!-- navbar items -->
-				<li><a href="index.html"><span class="gettingStartedLbl"></span></a></li>
-				<li><a href="docs.html"><span class="docsLbl"></span></a></li>
+				<li><a href="index.html"><span class="gettingStartedLbl">Getting Started</span></a></li>
+				<li><a href="docs.html"><span>Documentation</span></a></li>
 				<li class="dropdown languageDropdown">
-					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"></span> <span class="caret"></span></a>
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"><img class="flagImg" src="images/flag-united-kingdom.jpg">english</span> <span class="caret"></span></a>
 					<ul id="languagePicker" class="dropdown-menu languagePicker">
 						<li class="active">
-							<a href="#" data-lang="sr"><img class="flagImg" src="images/flag-serbia.jpg" alt="SRB" /> srpski</a>
+							<a href="index_rs.html" data-lang="sr"><img class="flagImg" src="images/flag-serbia.jpg" alt="SRB" /> srpski</a>
 						</li>
 						<li>
-							<a href="#" data-lang="en"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="UK" /> english</a>
+							<a href="index.html" data-lang="en"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="UK" /> english</a>
 						</li>
 					</ul>
 				</li>
@@ -46,103 +46,7 @@
 	</div>
 
 		<div class="container">
-			<div id="content_sr" class="collapse in">
-				<h1>Dokumentacija</h1>
-				<p><strong>procitaj:</strong> Ova instrukcija omogućava korisniku da unese broj u program radi obrade. Vrednost koju korisnik unese se smesta u promenjivu.</p>
-				<code>
-					procitaj x;
-				</code>
-
-				<p>Gornja instrukcija čita broj koji korisnik unese preko terminala i smešta u promenjivu x.</p>
-				<p>Posle ove instrukcije mora da sledi tačka-zarez.</p>
-				<p><strong>ispisi:</strong> Ova instrukcija omogućava da se promenjiva, broj ili string ispiše na terminal.</p>
-				<code>
-					ispisi x;
-				</code>
-
-				<p>Gornja instrukcija ispisuje vrednost promenjive na terminal.</p>
-				<code>
-					ispisi 5;
-				</code>
-
-				<p>Gornja instrukcija vrednost 5 na terminal.</p>
-				<code>
-					ispisi "poruka";
-				</code>
-				<p>Gornja instrukcija vrednost poruka na terminal.</p>
-				<p>Posle ove instrukcije mora da sledi tačka-zarez.</p>
-				<p><strong>ako onda inace kraj:</strong> Ova instrukcija omogućava korisniku da zada uslov. U zavisnosti od toga da li je uslov ispunjen ili ne jedan ili drugi blok instrukcija se izvršava.</p>
-				<code>
-					procitaj x;</br>
-					ako x = 0 onda</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli je nula.";</br>
-					inace</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "Broj koji ste uneli nije nula.;"</br>
-					kraj
-				</code>
-
-				<p>Kod iznad u prvoj instrukciji čita broj koji je korisnik uneo preko terminala i smešta vrednost u promenjivu x. U sledećoj liniji proverava da li je vrednost x jednak nuli. Ukoliko je vrednost x jednaka nuli poruka "Broj koji ste uneli je nula." se štampa. Ukoliko vrednost x nije jednaka nuli poruka "Broj koji ste uneli nije nula." se štampa.</p>
-				<p>Iza instrukcije onda, inace i kraj ne treba da sledi tačka-zarez.</p>
-				<p>Instrukcija ako prihvata jedan od dva uslova. Jednako "=" koji proverava da li su vrednosti koje se porede jednake ili manje od "<" koja proverava da li je prva vrednost u komparaciji manja od druge vrednosti u komparaciji.</p>
-				<p>Ako želite da proverite da li je promenjiva negativna koristite sledeći kod:</p>
-				<code>ako x < 0 onda</code>
-				<p>Ako želite da proverite da li je promenjiva pozitivna koristite sledeći kod:</p>
-				<code>ako 0 < x onda</code>
-				<p><strong>ponovi do:</strong> Ova instrukcija omogućava korisniku da iznova ivršava deo koda dok se uslov ne ispuni.</p>
-				<code>
-					x := 5;</br>
-					ponovi</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;ispisi "U petlji.";</br>
-						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1;</br>
-					do x = 0</br>
-					ispisi "Izašao iz petlje.;"</br>
-				</code>
-
-				<p>Kod iznad u prvoj instrukciji smešta vrednost 5 u promenjivu x. U sledećoj liniji počinje ponovi blok. Poruka "U petlji." se štampa. Promenjiva x se umanjuje za 1. Onda se proverava uslov u dok instrukciji. Ako vrednost x nije nula petlja se ponavlja. Ako je vrednost x nula poruka "Izašao iz petlje." se štampa.</p>
-				<p>Iza instrukcija ponovi i do ne sme da sledi tačka-zarez.</p>
-				<p>Instrukcija do prihvata jedan od dva uslova. Jednako "=" koji proverava da li su vrednosti koje se porede jednake ili manje od "<" koja proverava da li je prva vrednost u komparaciji manja od druge vrednosti u komparaciji.</p>
-				<p>Ako želite da ponavljate blok dok promenjiva ne postane negativna koristite sledeći kod:</p>
-				<code>do x < 0</code>
-				<p>Ako želite da ponavljate blok dok promenjiva ne postane pozitivna koristite sledeći kod:</p>
-				<code>do 0 < x</code>
-				<p><strong>komentari:</strong> Znak # se koristi za komentare u kodu. Sve sto se nalazi izmedju dva # znaka biće ignorisano od strane mlpl interpretera.</p>
-				<code>
-					#Ovo je komentar.#</br>
-					procitaj x;</br>
-					#Ovo je jos</br>
-					jedan komentar</br>
-					u više linija.#</br>
-					ispisi x;
-				</code>
-				<p><strong>Aritmetičke operacije:</strong> Osnovne aritmetičke operacije su podržane. Aritmetičke operacije su podržane samo sa celim brojevima.</p>
-				<p>Dodela</p>
-				<code>
-					x := 2;
-				</code>
-				<p>Kod iznad dodeljuje broj 2 u promenjivu x.</p>
-				<p>Sabiranje</p>
-				<code>
-					y := x + 1;
-				</code>
-				<p>Kod iznad uzima vrednost iz promenjive x dodaje 1 na nju i rezultat smešta u promenjivu y.</p>
-				<p>Oduzimanje</p>
-				<code>
-					y := y - 1;
-				</code>
-				<p>Kod iznad uzima vrednost iz promenjive y oduzima 1 od nje i rezultat smešta u promenjivu y.</p>
-				<p>Množenje</p>
-				<code>
-					x := 2 * 3;
-				</code>
-				<p>Kod iznad množi 2 sa 3 i rezultat smešta u promenjivu x.</p>
-				<p>Deljenje</p>
-				<code>
-					z := x / y;
-				</code>
-				<p>Kod iznad uzima vrednost i promenjive x deli sa vrednošću iz promenjive y i rezultat smešta u promenjivu z.</p>
-			</div>
-
-			<div id="content_en" class="collapse">
+			<div id="content_en" class="collapse in">
 				<h1>Documentation</h1>
 
 				<p><strong>read:</strong> This instruction enables the user to supply an integer for the program to process. The value user supplies is placed in a variable.</p>
@@ -242,6 +146,5 @@
 
 		<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
 	</body>
 </html>
