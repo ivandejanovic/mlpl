@@ -50,6 +50,7 @@ const (
 	rParen     rune = ')'
 	semi       rune = ';'
 	quotation  rune = '"'
+	underscore rune = '_'
 )
 
 type state int
@@ -179,7 +180,7 @@ func (buffer *parseBuffer) getToken() types.Token {
 				currentToken = types.NUM
 			}
 		case inId:
-			if !unicode.IsLetter(r) {
+			if !(unicode.IsLetter(r) || r == underscore) {
 				err = buffer.reader.UnreadRune()
 				if err != nil {
 					panic(err)
