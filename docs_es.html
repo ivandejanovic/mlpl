@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="es">
+	<head>
+		<title>MLPL -Lenguaje de Programación Multilingüe</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="MLPL Multilinguale Programming language">
+		<meta name="keywords" content="programming, education, kids, children">
+		<meta charset="utf-8">
+		<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
+	</head>
+	<body class="mlpl">
+	<div id="mainNav" class="navbar navbar-default mainNav">
+
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">
+					<span class="libLogo">MLPL</span>
+					<span class="libdesc">Lenguaje de Programación Multilingüe</span>
+				</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+					<i class="glyphicon glyphicon-menu-hamburger"></i>
+				</button>
+			</div>
+
+			<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+				<!-- navbar items -->
+				<li><a href="index_es.html"><span>Página de inicio</span></a></li>
+				<li><a href="docs_es.html"><span>Documentación</span></a></li>
+				<li class="dropdown languageDropdown">
+					<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"><img class="flagImg" src="images/flag-spain.jpg">español</span> <span class="caret"></span></a>
+					<ul id="languagePicker" class="dropdown-menu languagePicker">
+						<li>
+							<a href="index_rs.html" data-lang="sr"><img class="flagImg" src="images/flag-serbia.jpg" alt="SRB" /> srpski</a>
+						</li>
+						<li>
+							<a href="index.html" data-lang="en"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="UK" /> english</a>
+						</li>
+						<li class="active">
+							<a href="index_es.html" data-lang="en"><img class="flagImg" src="images/flag-spain.jpg" alt="ES" /> español</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+		<div class="container">
+			<div id="content_sr" class="collapse in">
+				<h1>Documentación</h1>
+				<p><strong>lea:</strong> Esto permite que el usuario introduzca el número para su procesamiento por el programa. El valor que introduce el usuario se guarda en la variable.</p>
+				<code>
+					lea x;
+				</code>
+
+				<p>La instrucción de arriba lee el número que el usuario introduce a través del terminal y se almacena en la variable x.</p>
+				<p>Esta instrucción debe ir seguida por el punto y coma.</p>
+				<p><strong>escriba:</strong> Esta instrucción permite que la variable, el número o cadena de caracteres se  muestre  en el terminal.</p>
+				<code>
+					escriba x;
+				</code>
+
+				<p>La instrucción de arriba escribe el valor final de la variable en el terminal.</p>
+				<code>
+					escriba 5;
+				</code>
+
+				<p>La instrucción de arriba escribe el valor 5 en el terminal.</p>
+				<code>
+					escriba "mensaje";
+				</code>
+				<p>La instrucción de arriba escribe los valores de los mensajes en el terminal.</p>
+				<p>Esta instrucción debe ir seguida por el punto y coma.</p>
+				<p><strong>si entonces de_otra_manera fin:</strong> Esto le permite al usuario poner una condición. Dependiendo de si esta condición se cumple o no, se ejecutará un bloque de instrucciones u otro.</p>
+				<code>
+					lea x;</br>
+					si x = 0 entonces</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;escriba "Se ha introducido el número cero.";</br>
+					de_otra_manera</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;escriba "El número que ha introducido no es cero.";</br>
+					fin
+				</code>
+
+				<p>El código por encima (código de la primera instrucción) lee el número que el usuario ha introducido a través del terminal y almacena el valor de la variable x. La siguiente línea comprueba si el valor de x es igual a cero. Si el valor de x es igual a cero, se imprimirá el mensaje "Se ha introducido el número cero". Si el valor de x no es igual a cero, se imprimirá el mensaje "El número que ha introducido no es cero".</p>
+				<p>Las instrucciones entonces, de otra manera y fin no deben ir seguidas por el punto y coma.</p>
+				<p>La instrucción “si” acepta una de las dos condiciones. El signo igual a "=" comprueba si los valores comparados son iguales o menor que "<", que comprueba si el primer valor de comparación es menor que el segundo.</p>
+				<p>Si desea asegurarse que la variable es negativo, utilice el siguiente código:</p>
+				<code>si x < 0 entonces</code>
+				<p>Si desea asegurarse que la variable es positivo, utilice el siguiente código:</p>
+				<code>si 0 < x entonces</code>
+				<p><strong>repetir hasta:</strong> Esto le permite al usuario volver a ejecutar parte de código hasta que se cumple una condición.</p>
+				<code>
+					x := 5;</br>
+					repetir</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;escriba "En el bucle".;</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;x := x - 1;</br>
+					hasta_que x = 0</br>
+					escriba "Salió del bucle.";</br>
+				</code>
+
+				<p>El código por encima (código de la primera instrucción) almacena el valor 5 en la variable x. En la siguiente línea comienza el bloque “repetir”. El mensaje "En el bucle" se imprime. La variable x se reduce por 1. A continuación, se comprueba la condición en la instrucción hasta_que. Si el valor de x no es cero se repite el bucle. Si el valor de x es cero el mensaje "Salió del bucle". se imprime.</p>
+				<p>Las instrucciones repetir y hasta que no deben ir seguidas por el punto y coma.</p>
+				<p>La instrucción “hasta que” acepta una de las dos condiciones. El signo igual a "=" comprueba si los valores comparados son iguales a o menor que "<", que comprueba si el primer valor de comparación es menor que el segundo.</p>
+				<p>Si desea repetir el bloque hasta que la variable sea negativo, utilice el siguiente código:</p>
+				<code>hasta_que x < 0</code>
+				<p>Si desea repetir el bloque hasta que la variable sea positivo, utilice el siguiente código:</p>
+				<code>hasta_que 0 < x</code>
+				<p><strong>comentarios:</strong> El signo # se utiliza para los comentarios en el código. Todo lo que se encuentra entre dos caracteres # será ignorado por el intérprete MLPL.</p>
+				<code>
+					#Esto es un comentario. #</br>
+					lea x;</br>
+					#Este es otro</br>
+					comentario en</br>
+					líneas.#</br>
+					escriba x;
+				</code>
+				<p><strong>Operaciones aritméticas:</strong> Se soportan las operaciones aritméticas básicas. Se soportan las operaciones aritméticas sólo con números enteros.</p>
+				<p>asignación</p>
+				<code>
+					x := 2;
+				</code>
+				<p>El código de arriba asigna el número 2 a la variable x.</p>
+				<p>suma</p>
+				<code>
+					y := x + 1;
+				</code>
+				<p>El código de arriba toma el valor de la variable x se le suma 1 y el resultado se guarda en la variable y.</p>
+				<p>resta</p>
+				<code>
+					y := y - 1;
+				</code>
+				<p>El código de arriba toma el valor de la variable y se le resta 1 y el resultado se guarda en la variable y.</p>
+				<p>multiplicación</p>
+				<code>
+					x := 2 * 3;
+				</code>
+				<p>El código de arriba multiplica 2 por 3 y el resultado se guarda en la variable x.</p>
+				<p>división</p>
+				<code>
+					z := x / y;
+				</code>
+				<p>El código de arriba toma el valor y divide la variable x con el valor de la variable y guardando el resultado en la variable z.</p>
+			</div>
+
+		<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	</body>
+</html>

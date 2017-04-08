@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+	<title>MLPL - Lenguaje de Programación Multilingüe</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="MLPL Multilinguale Programming language">
+	<meta name="keywords" content="programming, education, kids, children">
+	<meta charset="utf-8">
+	<link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+<body class="mlpl">
+<div id="mainNav" class="navbar navbar-default mainNav">
+
+	<div class="container">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand">
+				<span class="libLogo">MLPL</span>
+				<span class="libdesc">Lenguaje de Programación Multilingüe</span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pagesNav" aria-expanded="false" aria-controls="navbar">
+				<i class="glyphicon glyphicon-menu-hamburger"></i>
+			</button>
+		</div>
+
+		<ul id="pagesNav" class="nav navbar-nav navbar-collapse collapse navbar-right">
+			<!-- navbar items -->
+			<li><a href="index_es.html"><span>Página de inicio</span></a></li>
+			<li><a href="docs_es.html"><span>Documentación</span></a></li>
+			<li class="dropdown languageDropdown">
+				<a href="#" data-toggle="dropdown" data-target="#langMenu" class="dropdown-toggle"><span id="selectedLang"><img class="flagImg" src="images/flag-spain.jpg">español</span> <span class="caret"></span></a>
+				<ul id="languagePicker" class="dropdown-menu languagePicker">
+					<li>
+						<a href="index_rs.html" data-lang="sr"><img class="flagImg" src="images/flag-serbia.jpg" alt="SRB" /> srpski</a>
+					</li>
+					<li>
+						<a href="index.html" data-lang="en"><img class="flagImg" src="images/flag-united-kingdom.jpg" alt="UK" /> english</a>
+					</li>
+					<li class="active">
+						<a href="index_es.html" data-lang="en"><img class="flagImg" src="images/flag-spain.jpg" alt="ES" /> español</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="content_sr" class="collapse in">
+	<div class="container">
+		<div class="jumbotron">
+			<h1>MLPL - Lenguaje de Programación Multilingüe</h1>
+
+			<h3>Qué es MLPL?</h3>
+
+			<p>En la mayoría de lenguajes de programación utilizados hoy en día se require un nivel adecuado de competencia en lengua inglesa y el alfabeto. Por lo tanto, un niño cuya lengua materna no es el ingles habrá más dificultades para utilizar el lenguaje de programación que el niño del país de habla inglesa.</p>
+			<p>La idea detrás de MLPL es crear un intérprete para un lenguaje con una sintaxis muy simple que se puede traducir fácilmente. Junto al archivo que contiene el programa, el programador le enviaría al usuario un archivo más que contiene todas las palabras clave traducidas a la lengua materna del programador. De este modo, los niños cuya lengua materna no es el inglés podrían comenzar a programar desde una edad muy temprana.</p>
+		</div>
+
+		<h2 class="text-center">Primeros pasos</h2>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="text-center">
+					<p>Si está utilizando Windows, puede descargar el paquete aquí:</p>
+					<p>
+						<a class="btn btn-lg btn-primary" href="files/mlpl_windows_espanol.zip">MLPL para Windows <i class="fa fa-windows" aria-hidden="true"></i></a>
+					</p>
+				</div>
+
+				<div class="well">
+					<p>Si está utilizando Windows, descomprima el contenido del paquete. Inicie la consola y vaya al directorio donde se ha extraído el contenido del paquete. He aquí un ejemplo de programa que se puede iniciar con el comando</p>
+					<div class="terminal_container">
+						<p>mlpl.bat ejemplo.mlpl</p>
+					</div>
+					<p>en el terminal. Abra cualquier editor de texto, y escriba un programa utilizando la documentación. Grábelo en el mismo directorio que contiene el paquete descomprimido. Inicie el programa con el comando</p>
+					<div class="terminal_container">
+						<p>mlpl.bat tu_programa.mlpl</p>
+					</div>
+					<p>en el terminal.</p>
+				</div>
+			</div>
+			<div class="col-sm-6">
+
+				<div class="text-center">
+					<p>Si está utilizando Linux, puede descargar el paquete aquí:</p>
+					<p>
+						<a class="btn btn-lg btn-primary" href="files/mlpl_linux_espanol.zip">MLPL para Linux <i class="fa fa-linux" aria-hidden="true"></i></a>
+					</p>
+				</div>
+
+				<div class="well">
+					<p>Si está utilizando Linux, primero descomprima el contenido del paquete. Inicie el terminal y vaya al directorio donde se ha extraído el contenido del paquete. He aquí un ejemplo de programa que se puede iniciar con el comando</p>
+					<div class="terminal_container">
+						<p>./mlpl.sh ejemplo.mlpl</p>
+					</div>
+					<p>en el terminal. Abra cualquier editor de texto, y escriba un programa utilizando la documentación. Grábelo en el mismo directorio que contiene el paquete descomprimido. Inicie el programa con el comando</p>
+					<div class="terminal_container">
+						<p>./mlpl.sh tu_programa.mlpl</p>
+					</div>
+					<p>en el terminal.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="mainFooter">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<ul class="mainFooter__nav">
+						<li><a href="index_es.html">Página de inicio</a></li>
+						<li><a href="docs_es.html">Documentación</a></li>
+						<li><a href="https://github.com/ivandejanovic/mlpl">MLPL en Github-u</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<strong>Autor del MLPL:</strong> Ivan Dejanović
+				</div>
+				<div class="col-sm-6">
+					<strong>Diseño de Página Web:</strong> Ivan Stamenković
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script   src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
