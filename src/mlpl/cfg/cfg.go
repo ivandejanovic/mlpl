@@ -77,7 +77,7 @@ func HandleArgs() (bool, string) {
 				fmt.Println("  -h, --help       Prints help")
 				fmt.Println("  -v, --version    Prints version")
 			case "v", "version":
-				fmt.Println("MLPL interpreter version 1.1.0")
+				fmt.Println("MLPL interpreter version 1.1.1")
 			default:
 				fmt.Println("Invalid usage. For correct usage examples please try: mlpl -h")
 			}
