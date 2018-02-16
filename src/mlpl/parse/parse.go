@@ -171,9 +171,11 @@ func (buffer *parseBuffer) getToken() types.Token {
 			}
 		case inNum:
 			if !unicode.IsDigit(r) {
-				err = buffer.reader.UnreadRune()
-				if err != nil {
-					panic(err)
+				if err != io.EOF {
+					err = buffer.reader.UnreadRune()
+					if err != nil {
+						panic(err)
+					}
 				}
 				save = false
 				state = done
