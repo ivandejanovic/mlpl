@@ -27,8 +27,8 @@ package lexer
 import (
 	"errors"
 	"fmt"
-	"mlpl/locale"
-	"mlpl/types"
+	"github.com/ivandejanovic/mlpl/locale"
+	"github.com/ivandejanovic/mlpl/types"
 	"strconv"
 )
 

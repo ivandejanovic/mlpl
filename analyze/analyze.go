@@ -27,8 +27,8 @@ package analyze
 import (
 	"errors"
 	"fmt"
-	"mlpl/locale"
-	"mlpl/types"
+	"github.com/ivandejanovic/mlpl/locale"
+	"github.com/ivandejanovic/mlpl/types"
 )
 
 type procNode func(buf *buffer, node *types.TreeNode)

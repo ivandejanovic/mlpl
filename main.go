@@ -25,12 +25,12 @@ SOFTWARE.
 package main
 
 import (
-	"mlpl/analyze"
-	"mlpl/cfg"
-	"mlpl/codegen"
-	"mlpl/lexer"
-	"mlpl/parse"
-	"mlpl/vm"
+	"github.com/ivandejanovic/mlpl/analyze"
+	"github.com/ivandejanovic/mlpl/cfg"
+	"github.com/ivandejanovic/mlpl/codegen"
+	"github.com/ivandejanovic/mlpl/lexer"
+	"github.com/ivandejanovic/mlpl/parse"
+	"github.com/ivandejanovic/mlpl/vm"
 )
 
 func main() {

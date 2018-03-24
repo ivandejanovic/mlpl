@@ -26,7 +26,7 @@ package vm
 
 import (
 	"fmt"
-	"mlpl/locale"
+	"github.com/ivandejanovic/mlpl/locale"
 	"strconv"
 	"strings"
 )

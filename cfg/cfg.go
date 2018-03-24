@@ -27,8 +27,8 @@ package cfg
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ivandejanovic/mlpl/locale"
 	"io/ioutil"
-	"mlpl/locale"
 	"os"
 	"strings"
 )

@@ -27,9 +27,9 @@ package parse
 import (
 	"bufio"
 	"fmt"
+	"github.com/ivandejanovic/mlpl/locale"
+	"github.com/ivandejanovic/mlpl/types"
 	"io"
-	"mlpl/locale"
-	"mlpl/types"
 	"os"
 	"unicode"
 )

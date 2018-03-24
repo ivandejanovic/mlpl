@@ -27,7 +27,7 @@ package locale
 import (
 	"errors"
 	"fmt"
-	"mlpl/types"
+	"github.com/ivandejanovic/mlpl/types"
 )
 
 type LocaleType struct {
