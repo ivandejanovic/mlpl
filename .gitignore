@@ -1,4 +1,6 @@
 bin
 pkg
+debug
 .settings
 .project
+.vscode
