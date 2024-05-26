@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2016-2022 Ivan Dejanovic
+Copyright (c) 2016-2024 Ivan Dejanovic
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,9 +46,11 @@ type codeBuffer struct {
 	highEmitLoc int // Highest TM location emitted so far. For use in conjunction with emitSkip, emitBackup, and emitRestore
 }
 
-/* Procedure emitSO emits a string-only TM instruction
-   op = the opcode
-   s = string
+/*
+Procedure emitSO emits a string-only TM instruction
+
+	op = the opcode
+	s = string
 */
 func (codeBuf *codeBuffer) emitSO(op string, s string) {
 	code := fmt.Sprintf("%3d: %5s %s", codeBuf.emitLoc, op, s)
@@ -59,11 +61,13 @@ func (codeBuf *codeBuffer) emitSO(op string, s string) {
 	codeBuf.code = append(codeBuf.code, code)
 }
 
-/* Procedure emitRO emits a register-only TM instruction
-   op = the opcode
-   r = target register
-   s = 1st source register
-   t = 2nd source register
+/*
+Procedure emitRO emits a register-only TM instruction
+
+	op = the opcode
+	r = target register
+	s = 1st source register
+	t = 2nd source register
 */
 func (codeBuf *codeBuffer) emitRO(op string, r int, s int, t int) {
 	code := fmt.Sprintf("%3d: %5s %d, %d, %d", codeBuf.emitLoc, op, r, s, t)
@@ -74,11 +78,13 @@ func (codeBuf *codeBuffer) emitRO(op string, r int, s int, t int) {
 	codeBuf.code = append(codeBuf.code, code)
 }
 
-/* Procedure emitRM emits a register-to-memory TM instruction
-   op = the opcode
-   r = target register
-   d = the offset
-   s = the base register
+/*
+Procedure emitRM emits a register-to-memory TM instruction
+
+	op = the opcode
+	r = target register
+	d = the offset
+	s = the base register
 */
 func (codeBuf *codeBuffer) emitRM(op string, r int, d int, s int) {
 	code := fmt.Sprintf("%3d: %5s %d, %d(%d)", codeBuf.emitLoc, op, r, d, s)
@@ -110,10 +116,12 @@ func (codeBuf *codeBuffer) emitRestore() {
 	codeBuf.emitLoc = codeBuf.highEmitLoc
 }
 
-/* Procedure emitRM_Abs converts an absolute reference to a pc-relative reference when emitting a register-to-memory TM instruction
-   op = the opcode
-   r = target register
-   a = the absolute location in memory
+/*
+Procedure emitRM_Abs converts an absolute reference to a pc-relative reference when emitting a register-to-memory TM instruction
+
+	op = the opcode
+	r = target register
+	a = the absolute location in memory
 */
 func (codeBuf *codeBuffer) emitRM_Abs(op string, r int, a int) {
 	abs := a - (codeBuf.emitLoc + 1)
@@ -257,7 +265,7 @@ func genExp(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBuf
 	}
 }
 
-//Procedure cGen recursively generates code by tree traversal
+// Procedure cGen recursively generates code by tree traversal
 func cGen(treeNode *types.TreeNode, bucketMap map[string]types.Bucket, codeBuf *codeBuffer) {
 	if treeNode != nil {
 		switch treeNode.Node {
